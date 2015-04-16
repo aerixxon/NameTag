@@ -46,8 +46,11 @@
             
             list_of_people = $.unique(list_of_people.sort()).sort();
             
-            
-            for ()
+            /// iterate through the list and add roster lines for each person
+            for (k = 0; k < list_of_people.length; k++) { 
+                var currentPerson = list_of_people[k] 
+                // get a new row for this person! 
+            }
             
              
     }
