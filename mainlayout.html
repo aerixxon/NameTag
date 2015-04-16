@@ -167,6 +167,7 @@
         var pictures = ["faceMale.jpg", "faceFemale.jpg"]
         var counter = 0
         var finished = false
+        var correct = 0
         //flips card over
         $('.flashcardBox').on('click', function() {
           if(finished == false){
@@ -183,12 +184,12 @@
           document.getElementById("flashcardFace").src = pictures[counter];
           counter = counter+1
 
-          if(counter == 2){
+          if(counter == 3){
             console.log("hi");
             document.getElementById("flashcardName").innerHTML = "Congratulations on finishing your quiz! You have learned" + correct + "new students. Please click the quiz tab to take a new quiz.";
-            document.getElementById("correct").toggleClass('hidden');
-            document.getElementById("x").toggleClass('hidden');
-            document.getElementById("learned").toggleClass('hidden');
+            document.getElementById("check").style.display = "none";
+            document.getElementById("x").style.display = "none";
+            document.getElementById("learned").style.display = "none";
             finished= true;
           }
        });
