@@ -62,3 +62,9 @@ body {
 	padding-left: 20px;
 }
 
+#flashcardProgress{
+	text-align:right;
+	position: absolute;
+	bottom: 330px;
+	right:250px;
+}
