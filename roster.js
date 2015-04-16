@@ -10,18 +10,17 @@
 // 
  
   $(document).ready(function() {
-        var ALLnames  = ["John Doe", "Sara Huang"]
-        var pictures = ["faceMale.jpg", "faceFemale.jpg"]
+        var ALL  = ["Allie", "Joyce", "Malika", "McCall", "Milly", "Sara", "Scotty", "Eben"]
      
-        var Female = ["Cimran", "Allie", "Joyce", "Sara"]; 
-        var Male = ["Bill", "Bob"]; 
-        var Learn = ["Cimran", "Allie"]
-        var ToLearn = ["Joyce", "Sara"]; 
+        var Female = [ "Allie", "Joyce", "Malika", "McCall", "Milly", "Sara"]; 
+        var Male = ["Scotty", "Eben"]; 
+        var Learn = ["Allie", "Joyce", "Malika", "McCall"]
+        var ToLearn = ["Milly", "Sara", "Scotty", "Eben"]; 
         
-        var FiltersOn = [ToLearn, Learn];   
-        var list_of_people = []
+        var FiltersOn = [];   
+        var list_of_people = [];
       
-        var dict = {"Cimran": "faceFemale.jpg"};
+        var dict = {"Allie": "Allie.png", "Joyce": "Joyce.png", "Malika":"Malika.png", "McCall":"McCall.png", "Milly":"Milly.png", "Sara":"Sara.jpg", "Scotty": "Scotty.png", "Eben": "Eben.png"};
         
         
         $("#ToLearn").change (function() {
