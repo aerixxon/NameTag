@@ -18,22 +18,38 @@
         var Learn = ["Cimran", "Allie"]
         var ToLearn = ["Joyce", "Sara"]; 
         
-        var FiltersOn = [];   
+        var FiltersOn = [ToLearn, Learn];   
+        var list_of_people = []
       
-      
-        $(".checkbox").change (function() {
+        $("#ToLearn").change (function() {
           if(this.checked){
-            
+            // Add all the Learned people to roster-view
+              FiltersOn.push(ToLearn) 
+              update_view();  
+              
           }
         }
 
             
             
             
-        function add_row() {
-            correct_ans = Object.keys(current_dict)[Math.round(Math.random()*dict_length)];
-            word = current_dict[correct_ans]; 
-            $("span.current_word").html(word); 
+        function update_view() {
+            
+            // Fill in the roster based on the filters that are checked
+            for (i = 0; i < FiltersOn.length; i++ ) {
+                var filter = FiltersOn[i]; // 
+                
+                for (j = 0; j < filter.length; j++ ) {
+                    list_of_people.push(filter[j]) // add each person to the list_of_people
+                }
+            }
+            
+            list_of_people = $.unique(list_of_people.sort()).sort();
+            
+            
+            for ()
+            
+             
     }
             
             
