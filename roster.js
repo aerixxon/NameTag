@@ -21,17 +21,80 @@
         var FiltersOn = [ToLearn, Learn];   
         var list_of_people = []
       
+        var dict = {"Cimran": "faceFemale.jpg"};
+        
+        
         $("#ToLearn").change (function() {
           if(this.checked){
-            // Add all the Learned people to roster-view
-              FiltersOn.push(ToLearn) 
-              update_view();  
-              
+              // Add all the Learned people to roster-view
+              FiltersOn.push(ToLearn); 
           }
+            else {
+                FiltersOn.pop(ToLearn); 
+            }
+            update_view();
+                
+        }
+                              
+        $("#Learned").change (function() {
+          if(this.checked){
+            // Add all the Learned people to roster-view
+              FiltersOn.push(Learned); 
+          }
+            else {
+                FiltersOn.pop(Learned); 
+            }
+            update_view();
         }
 
-            
-            
+         $("#Undergrad").change (function() {
+          if(this.checked){
+            // Add all the Learned people to roster-view
+              FiltersOn.push(Undergrad);  
+          }
+            else {
+                FiltersOn.pop(Undergrad); 
+            }
+            update_view();
+        }
+        
+        $("#Grad").change (function() {
+          if(this.checked){
+            // Add all the Learned people to roster-view
+              FiltersOn.push(Grad); 
+          }
+            else {
+                FiltersOn.pop(Grad); 
+            }
+            update_view();
+        }
+        
+                           
+        $("#Female").change (function() {
+          if(this.checked){
+              // Add all the Learned people to roster-view
+              FiltersOn.push(Female); 
+          }
+            else {
+                FiltersOn.pop(Female); 
+            }
+            update_view();
+                
+        }
+        
+        $("#Male").change (function() {
+          if(this.checked){
+              // Add all the Learned people to roster-view
+              FiltersOn.push(Male); 
+          }
+            else {
+                FiltersOn.pop(Male); 
+            }
+            update_view();
+                
+        }
+                           
+                           
             
         function update_view() {
             
@@ -50,11 +113,6 @@
             for (k = 0; k < list_of_people.length; k++) { 
                 var currentPerson = list_of_people[k] 
                 // get a new row for this person! 
-            }
-            
-             
+            }        
     }
-            
-            
-            
        });
