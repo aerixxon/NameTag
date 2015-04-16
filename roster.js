@@ -1,50 +1,44 @@
-//$(function() { 
-//    var Female = ["Cimran", "Allie", "Joyce", "Sara"]; 
-//    var Male = ["Bill", "Bob"]; 
-//    var Learn = ["Cimran", "Allie"]
-//    var ToLearn = ["Joyce", "Sara"]; 
-//    
-//    
-// 
-// )
-// 
- 
-  $(document).ready(function() {
+
+  $(function() {
         var ALL  = ["Allie", "Joyce", "Malika", "McCall", "Milly", "Sara", "Scotty", "Eben"]
      
         var Female = [ "Allie", "Joyce", "Malika", "McCall", "Milly", "Sara"]; 
         var Male = ["Scotty", "Eben"]; 
-        var Learn = ["Allie", "Joyce", "Malika", "McCall"]
+        var Learned = ["Allie", "Joyce", "Malika", "McCall"]
         var ToLearn = ["Milly", "Sara", "Scotty", "Eben"]; 
         
         var FiltersOn = [];   
-        var list_of_people = [];
+        
       
-        var dict = {"Allie": "Allie.png", "Joyce": "Joyce.png", "Malika":"Malika.png", "McCall":"McCall.png", "Milly":"Milly.png", "Sara":"Sara.jpg", "Scotty": "Scotty.png", "Eben": "Eben.png"};
+        var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "Eben.png"};
+      
+      
         
-        
-        $("#ToLearn").change (function() {
-          if(this.checked){
-              // Add all the Learned people to roster-view
-              FiltersOn.push(ToLearn); 
-          }
-            else {
-                FiltersOn.pop(ToLearn); 
-            }
-            update_view();
-                
-        }
-                              
-        $("#Learned").change (function() {
-          if(this.checked){
+       $("#Learned2").change(function() {
+          if (this.checked){
             // Add all the Learned people to roster-view
-              FiltersOn.push(Learned); 
+              FiltersOn.push(Learned)
           }
             else {
-                FiltersOn.pop(Learned); 
+                FiltersOn.pop(Learned)
             }
-            update_view();
-        }
+            update_view()
+        });
+        
+        $("#ToLearn").change(function() {
+          if (this.checked){
+              // Add all the Learned people to roster-view
+              FiltersOn.push(ToLearn)
+              console.log(FiltersOn)
+          }
+            else {
+                FiltersOn.pop(ToLearn)
+            }
+            update_view()
+                
+        });
+                              
+       
 
          $("#Undergrad").change (function() {
           if(this.checked){
@@ -55,7 +49,7 @@
                 FiltersOn.pop(Undergrad); 
             }
             update_view();
-        }
+        });
         
         $("#Grad").change (function() {
           if(this.checked){
@@ -66,7 +60,7 @@
                 FiltersOn.pop(Grad); 
             }
             update_view();
-        }
+        });
         
                            
         $("#Female").change (function() {
@@ -79,7 +73,7 @@
             }
             update_view();
                 
-        }
+        });
         
         $("#Male").change (function() {
           if(this.checked){
@@ -91,12 +85,13 @@
             }
             update_view();
                 
-        }
+        });
                            
                            
             
         function update_view() {
-            
+            FiltersOn = $.unique(FiltersOn.sort()).sort();
+            var list_of_people = [];
             // Fill in the roster based on the filters that are checked
             for (i = 0; i < FiltersOn.length; i++ ) {
                 var filter = FiltersOn[i]; // 
@@ -112,21 +107,23 @@
             for (k = 0; k < list_of_people.length; k++) { 
                 var currentPerson = list_of_people[k] 
                 var newRow = document.getElementById("faceTable").insertRow(k);
+                
                 var newPic = document.createElement('img');
-                newpic.src = "femaleFace.jpg";
+                
+                newPic.src = dict[currentPerson];
+
                 var newface = newRow.insertCell(0);
-                newface.append(newPic);
-                var newName = newRow.insertCell(1); 
+            
+                newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
+                
+                
+                var newName = newRow.insertCell(1);
+                
                 newName.innerHTML = currentPerson;
 
 
-                "<tr> 
-                    <td>
-                        <img src="http://cdn87.psbin.com/img/mw=160/mh=210/cr=n/d=c422d/q03q76r57wdhlk7b.jpg" alt="Cimran Virdi" height="70" width="60"> </td> 
-                        <td class = "studentName"> Cimran Virdi</td>
-                </tr>""
 
                 
             }        
     }
-       });
+  });
