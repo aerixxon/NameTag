@@ -10,7 +10,7 @@
         var FiltersOn = [];   
         
       
-        var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "Eben.png"};
+        var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "faces/Eben.png"};
       
       
         
@@ -71,6 +71,7 @@
             else {
                 FiltersOn.pop(Female); 
             }
+            
             update_view();
                 
         });
@@ -82,14 +83,23 @@
           }
             else {
                 FiltersOn.pop(Male); 
+                console.log(FiltersOn);
             }
             update_view();
                 
         });
-                           
+
+      
+        function clear_view() {
+            // clears the table 
+            var faceTable = document.getElementById("faceTable"); 
+            faceTable.innerHTML = "";
+            
+        }
                            
             
         function update_view() {
+            clear_view();
             FiltersOn = $.unique(FiltersOn.sort()).sort();
             var list_of_people = [];
             // Fill in the roster based on the filters that are checked
