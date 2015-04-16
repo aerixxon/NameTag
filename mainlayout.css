@@ -9,3 +9,56 @@ body {
 #pb-row {
 	margin-bottom: 25px;
 }
+
+#flashcardFace{
+	height:200px;
+	margin-right: auto;
+	margin-left:auto;
+
+}
+
+.flashcardBox{
+	border-color:black;
+	margin-top:50px;
+	margin-left:20%;
+	margin-right:20%;
+	height: 350px;
+	box-shadow: 2px 2px 2px #000;
+}
+
+.flip{
+	text-align:right;
+	position:absolute;
+	bottom:30px;
+	right: 250px;
+}
+
+.hidden{
+	opacity: 
+}
+
+#flashcardName {
+	font-family:helvetica;
+	font-weight:bold;
+	text-align: center;
+	font-size:3em;
+}
+
+.flashcardLearned{
+	font-family:helvetica;
+	font-style: italic;
+	text-align:center;
+	padding-top: 40px;
+	padding-bottom: 15px;
+	font-size: 1.2em;
+}
+
+.checkmark{
+	height:75px;
+}
+
+.delete{
+	height:55px;
+	padding-left: 20px;
+}
+
