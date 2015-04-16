@@ -10,6 +10,8 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -157,13 +159,76 @@
         
         
               <div role="tabpanel" class="tab-pane fade" id="seating">wuz</div>
-              <div role="tabpanel" class="tab-pane fade" id="quiz">here</div>
-            </div>
-          </div>
-        </div> <!-- tab frame -->
+              <div role="tabpanel" class="tab-pane fade" id="quiz">
+                <div class="panel panel-default flashcardBox">
+                  <div class="panel-body flashcard hidden" style=  "padding-top: 40px";>                   
+                    <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-4">
+                           <div id = "flashcardName">Jane Doe</div>
+                           <div id = "learned" class = "flashcardLearned"> Add to Learned Pile?</div>
+                           <div><img id = "check" class = "checkmark" src = "checkmark.png"></img><img id = "x" class = "delete" src = "delete.png"></img></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-body flashcard" style=  "padding-top: 40px";>                   
+                    <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-4">
+                           <img id = "flashcardFace" class = "thumbnail" src="faceFemale.jpg"></img></div>
+                      </div>
+                  </div>
 
+                  <div class = "flip">click to flip</div>
+               </div>
+             </div>
+            </div>
+          </div> <!-- tab frame -->
       </div>
     </div>
+
+    <script>
+      $(document).ready(function() {
+        var names  = ["John Doe", "Sara Huang"]
+        var pictures = ["faceMale.jpg", "faceFemale.jpg"]
+        var counter = 0
+        var finished = false
+        var correct = 0
+        //flips card over
+        $('.flashcardBox').on('click', function() {
+          if(finished == false){
+            $('.flashcard').toggleClass('hidden');
+            $('.flip').toggleClass('hidden');
+          }
+
+       });
+
+        //when delete or checkmark are pressed, turns to front of card with different names
+        $('.delete').on('click', function() {
+          console.log("delete");
+          document.getElementById("flashcardName").innerHTML = names[counter];
+          document.getElementById("flashcardFace").src = pictures[counter];
+          counter = counter+1
+
+          if(counter == 3){
+            console.log("hi");
+            document.getElementById("flashcardName").innerHTML = "Congratulations on finishing your quiz! You have learned" + correct + "new students. Please click the quiz tab to take a new quiz.";
+            document.getElementById("check").style.display = "none";
+            document.getElementById("x").style.display = "none";
+            document.getElementById("learned").style.display = "none";
+            finished= true;
+          }
+       });
+        $('.checkmark').on('click', function() {
+          document.getElementById("flashcardName").innerHTML = names[counter];
+          document.getElementById("flashcardFace").src = pictures[counter];
+          counter = counter + 1
+          correct = correct + 1
+       });
+
+    });
+      </script>
+
 
     <script src="./mainlayout.js"></script>
   </body>
