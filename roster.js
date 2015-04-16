@@ -112,7 +112,22 @@
             /// iterate through the list and add roster lines for each person
             for (k = 0; k < list_of_people.length; k++) { 
                 var currentPerson = list_of_people[k] 
-                // get a new row for this person! 
+                var newRow = document.getElementById("faceTable").insertRow(k);
+                var newPic = document.createElement('img');
+                newpic.src = "femaleFace.jpg";
+                var newface = newRow.insertCell(0);
+                newface.append(newPic);
+                var newName = newRow.insertCell(1); 
+                newName.innerHTML = currentPerson;
+
+
+                "<tr> 
+                    <td>
+                        <img src="http://cdn87.psbin.com/img/mw=160/mh=210/cr=n/d=c422d/q03q76r57wdhlk7b.jpg" alt="Cimran Virdi" height="70" width="60"> </td> 
+                        <td class = "studentName"> Cimran Virdi</td>
+                </tr>""
+
+                
             }        
     }
        });

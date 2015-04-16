@@ -68,3 +68,7 @@ body {
 	bottom: 330px;
 	right:250px;
 }
+
+.studentName{
+	vertical-align: middle;
+}
