@@ -1,18 +1,6 @@
 
   $(function() {
-        var ALL  = ["Allie", "Joyce", "Malika", "McCall", "Milly", "Sara", "Scotty", "Eben"]
-     
-        var Female = [ "Allie", "Joyce", "Malika", "McCall", "Milly", "Sara"]; 
-        var Male = ["Scotty", "Eben"]; 
-        var Learned = ["Allie", "Joyce", "Malika", "McCall"]
-        var ToLearn = ["Milly", "Sara", "Scotty", "Eben"]; 
-        
-        var FiltersOn = [];   
-        
-      
-        var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "faces/Eben.png"};
-      
-      
+
         
        $("#Learned2").change(function() {
           if (this.checked){
@@ -99,9 +87,9 @@
                            
             
         function update_view() {
+          filterSelected = true
             clear_view();
             FiltersOn = $.unique(FiltersOn.sort()).sort();
-            var list_of_people = [];
             // Fill in the roster based on the filters that are checked
             for (i = 0; i < FiltersOn.length; i++ ) {
                 var filter = FiltersOn[i]; // 
@@ -125,7 +113,6 @@
                 var newface = newRow.insertCell(0);
             
                 newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
-                
                 
                 var newName = newRow.insertCell(1);
                 
