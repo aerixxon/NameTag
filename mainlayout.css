@@ -72,3 +72,7 @@ body {
 .studentName{
 	vertical-align: middle;
 }
+
+.greyOut{
+	color:grey;
+}
