@@ -125,7 +125,7 @@
         <div id ="tabs" class="col-lg-10">
           <div role="tabpanel">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
+            <ul id = "myTabs" class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#roster" aria-controls="roster" role="tab" data-toggle="tab">Roster</a></li>
               <li role="presentation"><a href="#seating" aria-controls="seating" role="tab" data-toggle="tab">Seating Chart</a></li>
               <li role="presentation"><a href="#quiz" aria-controls="quiz" role="tab" data-toggle="tab">Quiz Mode</a></li>
@@ -201,7 +201,6 @@
         var ToLearn = ["Milly", "Sara", "Scotty", "Eben"]; 
         var FiltersOn = [];   
         var list_of_people = [];
-        var filterSelected = false
 
         var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "faces/Eben.png"};
       
@@ -215,14 +214,36 @@
         inQuiz = false
         var size1 = 0
 
+
         document.getElementById("ToLearn").checked = true;
         document.getElementById("Learned2").checked = true;
         FiltersOn.push(Learned)
         FiltersOn.push(ToLearn)
+        FiltersOn = $.unique(FiltersOn.sort()).sort();
+            // Fill in the roster based on the filters that are checked
+            for (i = 0; i < FiltersOn.length; i++ ) {
+                var filter = FiltersOn[i]; // 
+                
+                for (j = 0; j < filter.length; j++ ) {
+                    list_of_people.push(filter[j]) // add each person to the list_of_people
+                }
+            }
+            
+            list_of_people = $.unique(list_of_people.sort()).sort();
+
+
+        $('#myTabs').on('click', function() {
+            document.getElementById("ToLearn").disabled = false;
+            document.getElementById("Learned2").disabled = false;
+            document.getElementById("Undergrad").disabled = false;
+            document.getElementById("Grad").disabled = false;
+            document.getElementById("Male").disabled = false;
+            document.getElementById("Female").disabled = false;
+        });
 
         $("#okButton").on('click', function() {
-          if (filterSelected) {
           size1 = list_of_people.length
+          if (size1 !=0) {
           var thisFace = list_of_people[counter];
           $('.flashcardFront').toggleClass('hidden');
           $('.filterMessage').toggleClass('hidden');
@@ -243,7 +264,7 @@
 
         //flips card over
         $('.flashcardBox').on('click', function() {
-          if(finished == false && inQuiz == true && filterSelected ==true){
+          if(finished == false && inQuiz == true && size1 != 0){
             console.log("in flip");
             $('.flashcardBack').toggleClass('hidden');
             $('.flashcardFront').toggleClass('hidden');
