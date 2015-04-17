@@ -214,18 +214,29 @@
         var correct = 0
         inQuiz = false
         var size1 = 0
+
+        document.getElementById("ToLearn").checked = true;
+        document.getElementById("Learned2").checked = true;
+        FiltersOn.push(Learned)
+        FiltersOn.push(ToLearn)
+
         $("#okButton").on('click', function() {
           if (filterSelected) {
           size1 = list_of_people.length
           var thisFace = list_of_people[counter];
-          console.log("ok");
-          console.log(thisFace);
-          console.log(dict[thisFace]);
           $('.flashcardFront').toggleClass('hidden');
           $('.filterMessage').toggleClass('hidden');
           document.getElementById("flashcardName").innerHTML = thisFace;
           document.getElementById("flashcardFace").src = dict[thisFace];
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
+
+          //disable filters for quiz
+          document.getElementById("Female").disabled = true;
+          document.getElementById("ToLearn").disabled = true;
+          document.getElementById("Learned2").disabled = true;
+          document.getElementById("Undergrad").disabled = true;
+          document.getElementById("Grad").disabled = true;
+          document.getElementById("Male").disabled = true;
         }
 
         });
@@ -264,7 +275,12 @@
             document.getElementById("learned").style.display = "none";
             document.getElementById("flashcardProgress").style.display = "none";
             finished= true;
-
+            document.getElementById("ToLearn").disabled = false;
+            document.getElementById("Learned2").disabled = false;
+            document.getElementById("Undergrad").disabled = false;
+            document.getElementById("Grad").disabled = false;
+            document.getElementById("Male").disabled = false;
+            document.getElementById("Female").disabled = false;
           }
        });
 
@@ -287,6 +303,12 @@
             document.getElementById("x").style.display = "none";
             document.getElementById("learned").style.display = "none";
             document.getElementById("flashcardProgress").style.display = "none";
+            document.getElementById("ToLearn").disabled = false;
+            document.getElementById("Learned2").disabled = false;
+            document.getElementById("Undergrad").disabled = false;
+            document.getElementById("Grad").disabled = false;
+            document.getElementById("Male").disabled = false;
+            document.getElementById("Female").disabled = false;
 
             finished= true;
             
