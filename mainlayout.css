@@ -75,7 +75,7 @@ body {
 
 
 .greyOut{
-	color:grey;
+	color:gray;
 }
 
 #picture_bank{
@@ -88,7 +88,7 @@ body {
 	float: right;
 	background-color: gray;
 	opacity: 0.3;
-	width: 1010px;
+	width: 88%;
 	height: 490px;
 }
 
