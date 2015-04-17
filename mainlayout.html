@@ -217,10 +217,12 @@
 
         document.getElementById("ToLearn").checked = true;
         document.getElementById("Learned2").checked = true;
-        FiltersOn.push(Learned)
-        FiltersOn.push(ToLearn)
-        FiltersOn = $.unique(FiltersOn.sort()).sort();
+        FiltersOn.push(Learned);
+        FiltersOn.push(ToLearn);
+            FiltersOn = $.unique(FiltersOn.sort()).sort();
             // Fill in the roster based on the filters that are checked
+                
+            var list_of_people = [];
             for (i = 0; i < FiltersOn.length; i++ ) {
                 var filter = FiltersOn[i]; // 
                 
@@ -230,7 +232,18 @@
             }
             
             list_of_people = $.unique(list_of_people.sort()).sort();
-
+            
+            /// iterate through the list and add roster lines for each person
+            for (k = 0; k < list_of_people.length; k++) { 
+                var currentPerson = list_of_people[k] 
+                var newRow = document.getElementById("faceTable").insertRow(k);
+                var newPic = document.createElement('img');
+                newPic.src = dict[currentPerson];
+                var newface = newRow.insertCell(0);
+                newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
+                var newName = newRow.insertCell(1);           
+                newName.innerHTML = currentPerson;
+            }
 
         $('#myTabs').on('click', function() {
             document.getElementById("ToLearn").disabled = false;
