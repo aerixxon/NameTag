@@ -1,18 +1,6 @@
 
   $(function() {
-        var ALL  = ["Allie", "Joyce", "Malika", "McCall", "Milly", "Sara", "Scotty", "Eben"]
      
-        var Female = [ "Allie", "Joyce", "Malika", "McCall", "Milly", "Sara"]; 
-        var Male = ["Scotty", "Eben"]; 
-        var Learned = ["Allie", "Joyce", "Malika", "McCall"]
-        var ToLearn = ["Milly", "Sara", "Scotty", "Eben"]; 
-        
-        var FiltersOn = [];   
-        
-      
-        var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "faces/Eben.png"};
-      
-      
         
        $("#Learned2").change(function() {
           if (this.checked){
@@ -20,7 +8,7 @@
               FiltersOn.push(Learned)
           }
             else {
-                FiltersOn.pop(Learned)
+                remove(Learned)
             }
             update_view()
         });
@@ -32,7 +20,7 @@
               console.log(FiltersOn)
           }
             else {
-                FiltersOn.pop(ToLearn)
+                remove(ToLearn);
             }
             update_view()
                 
@@ -46,7 +34,7 @@
               FiltersOn.push(Undergrad);  
           }
             else {
-                FiltersOn.pop(Undergrad); 
+                remove(Undergrad); 
             }
             update_view();
         });
@@ -57,7 +45,7 @@
               FiltersOn.push(Grad); 
           }
             else {
-                FiltersOn.pop(Grad); 
+                remove(Grad); 
             }
             update_view();
         });
@@ -69,21 +57,22 @@
               FiltersOn.push(Female); 
           }
             else {
-                FiltersOn.pop(Female); 
+                remove(Female); 
             }
             
             update_view();
                 
         });
         
+      
         $("#Male").change (function() {
           if(this.checked){
               // Add all the Learned people to roster-view
               FiltersOn.push(Male); 
           }
             else {
-                FiltersOn.pop(Male); 
-                console.log(FiltersOn);
+                remove(Male); 
+                console.log("hello");
             }
             update_view();
                 
@@ -96,13 +85,32 @@
             faceTable.innerHTML = "";
             
         }
-                           
+                    
+      
+       function remove(item) {
+           var i;
+           for(i = 0; i < FiltersOn.length; i++) {
+               if(FiltersOn[i] == item) {
+                  FiltersOn.splice(i,1);
+
+           }
+            
+           }
+           
+       }
             
         function update_view() {
+            
             clear_view();
+            if (FiltersOn.length == 0) {
+                clear_view();
+            }
+            else{
+            
             FiltersOn = $.unique(FiltersOn.sort()).sort();
-            var list_of_people = [];
             // Fill in the roster based on the filters that are checked
+                
+            var list_of_people = [];
             for (i = 0; i < FiltersOn.length; i++ ) {
                 var filter = FiltersOn[i]; // 
                 
@@ -117,21 +125,14 @@
             for (k = 0; k < list_of_people.length; k++) { 
                 var currentPerson = list_of_people[k] 
                 var newRow = document.getElementById("faceTable").insertRow(k);
-                
                 var newPic = document.createElement('img');
-                
                 newPic.src = dict[currentPerson];
-
                 var newface = newRow.insertCell(0);
-            
                 newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
-                
-                
-                var newName = newRow.insertCell(1);
-                
+                var newName = newRow.insertCell(1);           
                 newName.innerHTML = currentPerson;
 
-
+            }
 
                 
             }        
