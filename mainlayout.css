@@ -73,6 +73,27 @@ body {
 	vertical-align: middle;
 }
 
+
 .greyOut{
 	color:grey;
+}
+
+#picture_bank{
+	width: 100px;
+	float: left;
+	margin-left: 20px;	
+}
+
+#seating_canvas{
+	float: right;
+	background-color: gray;
+	opacity: 0.3;
+	width: 1010px;
+	height: 490px;
+}
+
+.seating_picture{
+	width: 60px;
+	height: 60px;
+	padding: 5px;
 }
