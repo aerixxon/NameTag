@@ -10,8 +10,8 @@ html,
 body {
   height: 100%;
   text-align: center;
-  background-color: #C7D0D5;
-  color: #EC583A;
+  background-color: #F6F6F6;
+  color: #E7512D;
 }
 
 /* Links */
@@ -26,7 +26,7 @@ a:hover {
 .btn-default,
 .btn-default:focus,
 .btn-default:hover {
-  background-color: #EC583A;
+  background-color: #E7512D;
 }
 
 .btn-default {
@@ -35,8 +35,8 @@ a:hover {
   line-height: 1.3333333;
   border-radius: 6px;
   border: 1px solid;
-  border-color: #EC583A;
-  color: #EC583A;
+  border-color: #E7512D;
+  color: #E7512D;
   background-color: transparent;
 }
 
