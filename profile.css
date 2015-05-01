@@ -1,0 +1,24 @@
+body { 
+    padding-top: 65px;
+    background-color: #F6F6F6;
+}
+
+/* NAVBAR */
+.navbar-default {
+    background: #E7512D;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .dropdown .dropdown-toggle {
+	color: #fff;
+}
+
+.navbar-default > .dropdown-toggle {
+    color: #E7512D;
+}
+
+
+/* TOP ROW */
+#top-row {
+	margin: 25px;
+}
