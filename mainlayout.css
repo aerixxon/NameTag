@@ -20,8 +20,8 @@ body {
 .flashcardBox{
 	border-color:black;
 	margin-top:50px;
-	margin-left:20%;
-	margin-right:20%;
+	margin-left:5%;
+	margin-right:35%;
 	height: 350px;
 	box-shadow: 2px 2px 2px #000;
 }
@@ -54,11 +54,13 @@ body {
 }
 
 .checkmark{
+	padding-top:10px;
 	height:75px;
 }
 
 .delete{
-	height:55px;
+	padding-top:10px;
+	height:75px;
 	padding-left: 20px;
 }
 
@@ -96,4 +98,55 @@ body {
 	width: 60px;
 	height: 60px;
 	padding: 5px;
+}
+
+
+#okButton{
+	margin-top: 0px;
+}
+
+.quizHeading{
+	font-family:helvetica;
+	font-style: bold;
+	text-align:center;
+	padding-top: 30px;
+	padding-bottom: 15px;
+	font-size: 2em;
+}
+#createQuizQuestions{
+	font-family:helvetica;
+	margin-left: 30%;
+	font-size: 1.2em;
+}
+
+#startNewQuizButton{
+	margin:15px;
+}
+
+#restartQuizButton{
+	margin-left: -15px;
+}
+
+#sideBar{
+	float:right;
+	margin-right: 10%;
+	font-family:helvetica;
+	width:20%;
+	text-align: center;
+}
+
+#sideBarHeading{
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 2em;
+}
+
+.sideBarProgress{
+	font-size: 1.5em;
+	padding-top: 18px;
+} 
+
+#endQuizButton{
+	margin-top:10px;
+
 }
