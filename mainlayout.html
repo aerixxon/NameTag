@@ -45,7 +45,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rob Miller <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Profile</a></li>
+                <li><a href="profile.html">Profile</a></li>
                 <li class="divider"></li>
                 <li><a href="login.html">Sign out</a></li>
               </ul>
@@ -144,25 +144,33 @@
                 
         
               <!--Seating Chart-->
+
               <div role="tabpanel" class="tab-pane fade" id="seating">
                 <div id="picture-bank">
-                  <img class="seating-picture" src="faces/Allie.png">
-                  <img class="seating-picture" src="faces/Eben.png">
-                  <img class="seating-picture" src="faces/Joyce.png">
-                  <img class="seating-picture" src="faces/Malika.png">
-                  <img class="seating-picture" src="faces/McCall.png">
-                  <img class="seating-picture" src="faces/Milly.png">
-                  <img class="seating-picture" src="faces/Sara.jpg">
-                  <img class="seating-picture" src="faces/Scotty.png">
+                  <img class="seating-picture drag" src="faces/Allie.png">
+                  <img class="seating-picture drag" src="faces/Eben.png">
+                  <img class="seating-picture drag" src="faces/Joyce.png">
+                  <img class="seating-picture drag" src="faces/Malika.png">
+                  <img class="seating-picture drag" src="faces/McCall.png">
+                  <img class="seating-picture drag" src="faces/Milly.png">
+                  <img class="seating-picture drag" src="faces/Sara.jpg">
+                  <img class="seating-picture drag" src="faces/Scotty.png">
                 </div>
                 <div id="seating-area">
-                  <div id="half-circle"></div>
+                  <div id="half-circle-container">
+                    <div id="half-circle">
+                      <div id="circle">
+                        <div id="triangle"></div>                        
+                      </div>
+                    </div>                  
+                  </div>
+
                 </div>
               </div>
               <!--End of Seating Chart-->
 
 
-              <!--Quiz M0de-->
+              <!--Quiz Mode-->
               <div role="tabpanel" class="tab-pane fade" id="quiz">
                 <div class="panel panel-default flashcardBox">
                 <div class="panel-body flashcard filterMessage" style=  "padding-top: 40px";>                   
@@ -213,7 +221,7 @@
         var list_of_people = [];
 
         var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "faces/Eben.png"};
-      
+
       
       $(document).ready(function() {
         //var names  = ["Malika Flanagan", "Joyce Hong", "Cimran Virdi", "Allie Erixxon", "Sara Huang"]
@@ -357,13 +365,11 @@
             finished= true;
             
           }
-
        });
-
     });
 
     
-      </script>
+    </script>
 
 
     <script src="./mainlayout.js"></script>
