@@ -1,23 +1,59 @@
 body { 
-    padding-top: 65px; 
+    padding-top: 65px;
+    background-color: #C7D0D5;
 }
 
-#pb-label {
-	font-weight: bold;
+/* NAVBAR */
+.navbar-default {
+    background: #EC583A;
 }
 
-#pb-row {
-	margin-bottom: 25px;
+.navbar-default .navbar-brand,
+.navbar-default .dropdown .dropdown-toggle {
+	color: #fff;
 }
 
-#flashcardFace{
+.navbar-default > .dropdown-toggle {
+    color: #EC583A;
+}
+
+
+/* TOP ROW */
+#top-row {
+	margin: 25px;
+}
+
+/* TABS */
+.nav-tabs > li > a {
+    color: #EC583A;
+} 
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+    color: #fff;
+    background-color: #EC583A;  
+} 
+
+/* FILTERS */
+.panel .panel-heading {
+    color: #fff;	
+    font-weight: bold;
+    background: #EC583A;
+}
+
+.panel {
+	border-color: #EC583A;
+}
+
+
+/* QUIZ MODE */
+#flashcardFace {
 	height:200px;
 	margin-right: auto;
 	margin-left:auto;
-
 }
 
-.flashcardBox{
+.flashcardBox {
 	border-color:black;
 	margin-top:50px;
 	margin-left:20%;
@@ -26,14 +62,14 @@ body {
 	box-shadow: 2px 2px 2px #000;
 }
 
-.flip{
+.flip {
 	text-align:right;
 	position:absolute;
 	bottom:30px;
 	right: 250px;
 }
 
-.hidden{
+.hidden {
 	opacity: 
 }
 
@@ -44,7 +80,7 @@ body {
 	font-size:3em;
 }
 
-.flashcardLearned{
+.flashcardLearned {
 	font-family:helvetica;
 	font-style: italic;
 	text-align:center;
@@ -53,38 +89,43 @@ body {
 	font-size: 1.2em;
 }
 
-.checkmark{
+.checkmark {
 	height:75px;
 }
 
-.delete{
+.delete {
 	height:55px;
 	padding-left: 20px;
 }
 
-#flashcardProgress{
+#flashcardProgress {
 	text-align:right;
 	position: absolute;
 	bottom: 330px;
 	right:250px;
 }
 
-.studentName{
+/* ROSTER */
+#faceTable {
+	background-color: #fff;
+}
+
+.studentName {
 	vertical-align: middle;
 }
 
-
-.greyOut{
+.greyOut {
 	color:gray;
 }
 
-#picture_bank{
+/* SEATING CHART */
+#picture_bank {
 	width: 100px;
 	float: left;
 	margin-left: 20px;	
 }
 
-#seating_canvas{
+#seating_canvas {
 	float: right;
 	background-color: gray;
 	opacity: 0.3;
@@ -92,7 +133,7 @@ body {
 	height: 490px;
 }
 
-.seating_picture{
+.seating_picture {
 	width: 60px;
 	height: 60px;
 	padding: 5px;

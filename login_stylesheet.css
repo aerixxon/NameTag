@@ -2,6 +2,18 @@
  * Globals
  */
 
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  text-align: center;
+  background-color: #C7D0D5;
+  color: #EC583A;
+}
+
 /* Links */
 a,
 a:focus,
@@ -12,29 +24,22 @@ a:hover {
 
 /* Custom default button */
 .btn-default,
-.btn-default:hover,
-.btn-default:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritence from `body` */
-  background-color: #fff;
-  border: 1px solid #fff;
+.btn-default:focus,
+.btn-default:hover {
+  background-color: #EC583A;
 }
 
-
-/*
- * Base structure
- */
-
-html,
-body {
-  height: 100%;
-  background-color: #333;
+.btn-default {
+  padding: 10px 20px;
+  font-size: 20px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  border: 1px solid;
+  border-color: #EC583A;
+  color: #EC583A;
+  background-color: transparent;
 }
-body {
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
-}
+
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
@@ -42,8 +47,6 @@ body {
   width: 100%;
   height: 100%; /* For at least Firefox */
   min-height: 100%;
-  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
 }
 .site-wrapper-inner {
   display: table-cell;
@@ -63,7 +66,7 @@ body {
 
 /*
  * Header
- */
+*/
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -114,11 +117,11 @@ body {
 .cover {
   padding: 0 20px;
 }
-.cover .btn-lg {
-  padding: 10px 20px;
-  font-weight: bold;
-}
 
+.cover-heading {
+  font-size: 80px;
+  margin: 0px;
+}
 
 
 /*
@@ -154,4 +157,3 @@ body {
     width: 700px;
   }
 }
-
