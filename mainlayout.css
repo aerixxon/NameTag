@@ -127,6 +127,8 @@ body {
 	height: 600px;
 	float: left;
 	margin: 0px;
+	background-color: #fff;
+	border: px solid #B6AEA1;
 }
 
 .seating-picture {
