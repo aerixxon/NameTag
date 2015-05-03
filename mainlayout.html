@@ -40,15 +40,12 @@
               </button>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">6.813</a></li>
-                <li><a href="#">6.005</a></li>
-                <li><a href="#">6.881</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rob Miller <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="profile.html">Profile</a></li>
                 <li class="divider"></li>
                 <li><a href="login.html">Sign out</a></li>
               </ul>
@@ -58,18 +55,12 @@
       </div>
     </nav> <!-- navbar -->
 
+
     <div class="container">
-      <div class="row" id="pb-row">
-        <div class="col-lg-1" id="pb-label">Progress</div>
-        <div class="col-lg-11">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-              60%
-            </div>
-          </div>     
-        </div>
+      <div class="row" id="top-row">
+
       </div>
-    </div> <!-- progress bar -->
+    </div> <!-- top row -->
 
     <div class="container-fluid">
       <div class="row">
@@ -112,12 +103,7 @@
                     <input type="checkbox" id = "Grad" value="">Graduate
                   </label>
                 </div>
-              </li>
-              <li class="list-group-item">
-                <button type="button" class="btn btn-default btn-md">
-                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Custom
-                </button>
-              </li>      
+              </li>     
             </ul>
           </div>
         </div> <!-- filters panel -->
@@ -149,46 +135,80 @@
                         </table>
                     </div>  
                 </div>
-          <!--End of Roster View -->
+                <!--End of Roster View-->
                 
                 
         
-        <!--Seating Chart-->
-              <div role="tabpanel" class="tab-pane fade" id="seating">
-                <div id="picture_bank">
-                  <img class="seating_picture" src="faces/Allie.png">
-                  <img class="seating_picture" src="faces/Eben.png">
-                  <img class="seating_picture" src="faces/Joyce.png">
-                  <img class="seating_picture" src="faces/Malika.png">
-                  <img class="seating_picture" src="faces/McCall.png">
-                  <img class="seating_picture" src="faces/Milly.png">
-                  <img class="seating_picture" src="faces/Sara.jpg">
-                  <img class="seating_picture" src="faces/Scotty.png">
-                </div>
-                <div id="seating_canvas"></div>
-              </div>
+              <!--Seating Chart-->
 
+              <div role="tabpanel" class="tab-pane fade" id="seating">
+                <div id="picture-bank">
+                  <img class="seating-picture drag" src="faces/Allie.png">
+                  <img class="seating-picture drag" src="faces/Eben.png">
+                  <img class="seating-picture drag" src="faces/Joyce.png">
+                  <img class="seating-picture drag" src="faces/Malika.png">
+                  <img class="seating-picture drag" src="faces/McCall.png">
+                  <img class="seating-picture drag" src="faces/Milly.png">
+                  <img class="seating-picture drag" src="faces/Sara.jpg">
+                  <img class="seating-picture drag" src="faces/Scotty.png">
+                </div>
+                <div id="seating-area">
+                  <div id="half-circle-container">
+                    <div id="half-circle">
+                      <div id="circle">
+                        <div id="triangle"></div>                        
+                      </div>
+                    </div>                  
+                  </div>
+
+                </div>
+              </div>
+        <!--Flashcards-->
+
+              <!--End of Seating Chart-->
+
+              <!--Quiz Mode-->
               <div role="tabpanel" class="tab-pane fade" id="quiz">
+                    <div id ="sideBar">
+                      <div id = "sideBarHeading"> Progress</div>
+                      <div class = "sideBarProgress">Correct So Far: 0</div>                       
+                      <div class = "sideBarProgress">Incorrect So Far: 0</div>
+                      <button id = "endQuizButton" class = "btn btn-default">End Quiz</button>
+                    </div>
                 <div class="panel panel-default flashcardBox">
-                <div class="panel-body flashcard filterMessage" style=  "padding-top: 40px";>                   
-                    <div class="row">
-                      <div class="col-md-4"></div>
-                      <div class="col-md-4">
-                           <div>Please select filters on the left and then click Ok</div>
-                           <button id = "okButton" type="button" class="btn btn-success">Ok</button>
+                  <!--Create a quiz-->
+                  <div class="panel-body flashcard createQuiz" style=  "padding-top: 10px";>                   
+                      <div class="row">
+                        <div class="">
+                          <div>
+                               <div class = "quizHeading">Create a New Quiz!</div>  
+                               <form class ="col-md-offset-3" id = "createQuizQuestions" action = "">
+                               <div>1. Select a quiz type:</div>
+                                <input type = "radio" name = "quizType" id = "toLearnNew" checked= "checked"> Learn New Students <br>
+                                <div>    </div> <input type = "radio" name = "quizType" id = "toReview" padding-left="5px"> Review Learned students<br>
+                                <p> </p>
+                                <div>2. Select a number of students to learn:</div>
+                                <input type = "radio" name = "studentNumbers" id = "ten" checked = "checked"> 10<br>
+                                <input type = "radio" name = "studentNumbers" id = "twenty"> 20<br>
+                                 <input type = "radio" name = "studentNumbers" id = "thirty"> 30<br>
+                              </form>
+                          </div>
+                          <button id = "okButton" class = "btn btn-success col-md-offset-8">Start Quiz</button>
                       </div>
                     </div>
                   </div>
+                  <!--Back of Flashcard with Name and check/X-->
                   <div class="panel-body flashcard hidden flashcardBack" style=  "padding-top: 40px";>                   
                     <div class="row">
                       <div class="col-md-4"></div>
                       <div class="col-md-4">
                            <div id = "flashcardName">Jane Doe</div>
-                           <div id = "learned" class = "flashcardLearned"> Add to Learned Pile?</div>
-                           <div><img id = "check" class = "checkmark" src = "checkmark.png"></img><img id = "x" class = "delete" src = "delete.png"></img></div>
+                           <div id = "learned" class = "flashcardLearned"> Do you know this Student?</div>
+                           <div><img id = "check" class = "checkmark" src = "greenCheck.png"></img><img id = "x" class = "delete" src = "redX.png"></img></div>
                       </div>
                     </div>
                   </div>
+                  <!--Front of Flashcard with Face and click to flip-->
                   <div class="panel-body flashcard hidden flashcardFront" style=  "padding-top: 40px";>                   
                     <div class="row">
                       <div class="col-md-4"></div>
@@ -197,9 +217,25 @@
                       </div>
                   </div>
                   <div id = "flashcardProgress" class ="progress1 hidden">1 of 3</div>
-                  <div class = "flip">click to flip</div>
+                  <div class = "flip hidden">click to flip</div>
+                  <!--Finishing Quiz screen-->
+                  <div class="panel-body flashcard finishQuiz hidden" style=  "padding-top: 10px";>                   
+                      <div class="row">
+                        <div class="">                               
+                          <div class = "quizHeading">You finished your quiz!</div>  
+                            <div class = "col-md-offset-4">
+                          <button id = "restartQuizButton" class = "btn btn-success">Restart Quiz</button>
+                          <button id = "startNewQuizButton" class = "btn btn-success">Start New Quiz</button>
+                            </div>
+                      </div>
+                    </div>
+                  </div>
                </div>
              </div>
+                </div>
+              </div>
+              <!--End of Quiz Mode-->
+
             </div>
           </div> <!-- tab frame -->
       </div>
@@ -228,7 +264,7 @@
         var list_of_students = [Allie, Joyce, Malika, McCall, Milly, Sara, Scotty, Eben];
 
         var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "faces/Eben.png"};
-      
+
       
       $(document).ready(function() {
         //var names  = ["Malika Flanagan", "Joyce Hong", "Cimran Virdi", "Allie Erixxon", "Sara Huang"]
@@ -238,6 +274,8 @@
         var correct = 0
         inQuiz = false
         var size1 = 0
+        var learnedStudents 
+        var numberOfStudents
 
 
         document.getElementById("ToLearn").checked = true;
@@ -279,12 +317,32 @@
             document.getElementById("Female").disabled = false;
         });
 
+        $('#startNewQuizButton').on('click', function() {
+            $('.createQuiz').toggleClass('hidden');
+            $('.finishQuiz').toggleClass('hidden');
+
+
+        });
+
         $("#okButton").on('click', function() {
+          //check radio buttons learned students
+          if(document.getElementById('toReview').checked) {
+            learnedStudents= true}
+          else if(document.getElementById('toLearnNew').checked) {
+            learnedStudents = false}
+          if(document.getElementById('ten').checked) {
+            numberOfStudents= 10}
+          else if(document.getElementById('twenty').checked) {
+            numberOfStudents= 20}           
+          else if(document.getElementById('thirty').checked) {
+            numberOfStudents= 30} 
+
+          inQuiz = true;
           size1 = list_of_people.length
           if (size1 !=0) {
           var thisFace = list_of_people[counter];
           $('.flashcardFront').toggleClass('hidden');
-          $('.filterMessage').toggleClass('hidden');
+          $('.createQuiz').toggleClass('hidden');
           document.getElementById("flashcardName").innerHTML = thisFace;
           document.getElementById("flashcardFace").src = dict[thisFace];
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
@@ -296,6 +354,11 @@
           document.getElementById("Undergrad").disabled = true;
           document.getElementById("Grad").disabled = true;
           document.getElementById("Male").disabled = true;
+            
+            $('.flashcardBack').toggleClass('hidden');
+            $('.flashcardFront').toggleClass('hidden');
+            $('.progress1').toggleClass('hidden');
+
         }
 
         });
@@ -309,7 +372,6 @@
             $('.flip').toggleClass('hidden');
             $('.progress1').toggleClass('hidden');
           }
-          inQuiz = true
         });
 
 
@@ -324,17 +386,17 @@
           document.getElementById("flashcardFace").src = dict[thisFace];
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
 
-
+        //quiz finished
           if(counter == size1){
-            console.log("hi");
-            document.getElementById("flashcardName").innerHTML ="Congratulations on finishing your quiz!<p> New students Learned: " + correct + ". </p> <p> Please click the quiz tab to take a new quiz. </p>";
-            document.getElementById("flashcardName").style.fontSize = "large";
-            document.getElementById("check").style.display = "none";
-            document.getElementById("x").style.display = "none";
-            document.getElementById("learned").style.display = "none";
+            $('.flashcardBack').toggleClass('hidden');
+            $('.finishQuiz').toggleClass('hidden');
+            //document.getElementById("flashcardName").style.display = "none"
+            //document.getElementById("check").style.display = "none";
+            //document.getElementById("x").style.display = "none";
+            //document.getElementById("learned").style.display = "none";
             document.getElementById("flashcardProgress").style.display = "none";
             finished= true;
-            document.getElementById("ToLearn").disabled = false;
+            //document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
             document.getElementById("Undergrad").disabled = false;
             document.getElementById("Grad").disabled = false;
@@ -353,14 +415,13 @@
           document.getElementById("flashcardFace").src = dict[thisFace];
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
 
-
           if(counter == size1){
-            console.log("hi");
-            document.getElementById("flashcardName").innerHTML = "Congratulations on finishing your quiz!<p> New students Learned: " + correct + "</p> <p> Please click the quiz tab to take a new quiz. </p>";
-            document.getElementById("flashcardName").style.fontSize = "large";
-            document.getElementById("check").style.display = "none";
-            document.getElementById("x").style.display = "none";
-            document.getElementById("learned").style.display = "none";
+            $('.flashcardBack').toggleClass('hidden');
+            $('.finishQuiz').toggleClass('hidden');
+            //document.getElementById("flashcardName").style.display = "none"
+            //document.getElementById("check").style.display = "none";
+            //document.getElementById("x").style.display = "none";
+            //document.getElementById("learned").style.display = "none";
             document.getElementById("flashcardProgress").style.display = "none";
             document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
@@ -368,17 +429,31 @@
             document.getElementById("Grad").disabled = false;
             document.getElementById("Male").disabled = false;
             document.getElementById("Female").disabled = false;
-
             finished= true;
             
           }
-
        });
+<<<<<<< HEAD
 
+        $('.checkmark').hover( function() {
+            document.getElementById("check").src = "greenCheckDark.png";},
+            function(){
+            document.getElementById("check").src = "greenCheck.png";
+             });
+
+        $('.delete').hover( function() {
+            document.getElementById("x").src = "RedXDark.png";},
+            function(){
+            document.getElementById("x").src = "redX.png";
+             });
+
+=======
+>>>>>>> 6d745be33752507bec27e32f32f784d066a70fad
     });
 
+
     
-      </script>
+    </script>
 
 
     <script src="./mainlayout.js"></script>

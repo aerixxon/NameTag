@@ -1,39 +1,78 @@
 body { 
-    padding-top: 65px; 
+    padding-top: 65px;
+    background-color: #F6F6F6;
 }
 
-#pb-label {
-	font-weight: bold;
+/* NAVBAR */
+.navbar-default {
+    background: #E7512D;
 }
 
-#pb-row {
-	margin-bottom: 25px;
+.navbar-default .navbar-brand,
+.navbar-default .dropdown .dropdown-toggle {
+	color: #fff;
 }
 
-#flashcardFace{
+.navbar-default > .dropdown-toggle {
+    color: #E7512D;
+}
+
+
+/* TOP ROW */
+#top-row {
+	margin: 25px;
+}
+
+/* TABS */
+.nav-tabs > li > a {
+    color: #E7512D;
+    background-color: #CBCBC1;
+    font-weight: bold;
+} 
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+    color: #fff;
+    background-color: #E7512D;  
+    font-weight: bold;
+} 
+
+/* FILTERS */
+.panel .panel-heading {
+    color: #fff;	
+    font-weight: bold;
+    background: #E7512D;
+}
+
+.panel {
+	border-color: #E7512D;
+}
+
+
+/* QUIZ MODE */
+#flashcardFace {
 	height:200px;
 	margin-right: auto;
 	margin-left:auto;
-
 }
 
-.flashcardBox{
+.flashcardBox {
 	border-color:black;
 	margin-top:50px;
-	margin-left:20%;
-	margin-right:20%;
+	margin-left:5%;
+	margin-right:35%;
 	height: 350px;
 	box-shadow: 2px 2px 2px #000;
 }
 
-.flip{
+.flip {
 	text-align:right;
 	position:absolute;
 	bottom:30px;
 	right: 250px;
 }
 
-.hidden{
+.hidden {
 	opacity: 
 }
 
@@ -44,7 +83,7 @@ body {
 	font-size:3em;
 }
 
-.flashcardLearned{
+.flashcardLearned {
 	font-family:helvetica;
 	font-style: italic;
 	text-align:center;
@@ -53,47 +92,169 @@ body {
 	font-size: 1.2em;
 }
 
+
 .checkmark{
+	padding-top:10px;
 	height:75px;
 }
 
 .delete{
+	padding-top:10px;
+	height:75px;
+}
+.checkmark {
+	height:75px;
+}
+
+.delete {
 	height:55px;
 	padding-left: 20px;
 }
 
-#flashcardProgress{
+#flashcardProgress {
 	text-align:right;
 	position: absolute;
 	bottom: 330px;
 	right:250px;
 }
 
-.studentName{
+/* ROSTER */
+#faceTable {
+	background-color: #fff;
+}
+
+.studentName {
 	vertical-align: middle;
 }
 
-
-.greyOut{
+.greyOut {
 	color:gray;
 }
 
-#picture_bank{
-	width: 100px;
+/* SEATING CHART */
+#picture-bank {
+	width: 15%;
+	height: 600px;
 	float: left;
-	margin-left: 20px;	
+	margin: 0px;
+	background-color: #fff;
+	border: px solid #B6AEA1;
 }
 
-#seating_canvas{
-	float: right;
-	background-color: gray;
-	opacity: 0.3;
-	width: 88%;
-	height: 490px;
-}
-
-.seating_picture{
-	width: 60px;
-	height: 60px;
+.seating-picture {
+	width: 45%;
 	padding: 5px;
+	margin-top: 5px;
 }
+
+#seating-area {
+	display: inline-block;
+	background-color: #B6AEA1;
+	width: 85%;
+	height: 600px;
+	top:0;
+	left:0;
+	z-index: 1;
+	position: relative;
+}
+
+#half-circle {
+    width: 160px;
+    height: 80px;
+
+    border-top-left-radius: 80px;
+    border-top-right-radius: 80px;
+    border: 8px solid #E7512D;
+    border-bottom: 0;
+
+    margin: 0 auto;
+    z-index: 5;
+}
+
+#half-circle-container {
+    width: 100%;
+    height: 80px;
+
+    position: absolute;
+    bottom:0;
+}
+
+
+#okButton{
+	margin-top: 0px;
+}
+
+.quizHeading{
+	font-family:helvetica;
+	font-style: bold;
+	text-align:center;
+	padding-top: 30px;
+	padding-bottom: 15px;
+	font-size: 2em;
+}
+#createQuizQuestions{
+	font-family:helvetica;
+	margin-left: 30%;
+	font-size: 1.2em;
+}
+
+#startNewQuizButton{
+	margin:15px;
+}
+
+#restartQuizButton{
+	margin-left: -15px;
+}
+
+#sideBar{
+	float:right;
+	margin-right: 10%;
+	font-family:helvetica;
+	width:20%;
+	text-align: center;
+}
+
+#sideBarHeading{
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 2em;
+}
+
+.sideBarProgress{
+	font-size: 1.5em;
+	padding-top: 18px;
+} 
+
+#endQuizButton{
+	margin-top:10px;
+
+}
+#circle {
+	width: 40px;
+	height: 40px;
+	background: #E7512D;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+
+	margin: 0 auto;
+	margin-top: 10px;
+	z-index: 5;
+}
+
+#triangle {
+	width: 0;
+	height: 0;
+	border-top: 32px solid transparent;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 30px solid #E7512D;
+
+	margin: 0 auto;
+	z-index: 5;
+}
+
+.drag {
+	position: relative;
+}
+
