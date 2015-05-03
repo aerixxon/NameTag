@@ -21,7 +21,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="roster.js"></script>
-      
+    <script type="text/javascript" src="Student.js"></script>
       
     <link rel="stylesheet" href="./mainlayout.css">
   </head>
@@ -214,6 +214,18 @@
         var ToLearn = ["Milly", "Sara", "Scotty", "Eben"]; 
         var FiltersOn = [];   
         var list_of_people = [];
+        
+        // Database of Students 
+        var Allie = Student("Allie", "Erixxon", "F", false, true);
+        var Joyce = Student("Joyce", "Hong", "F", false, true);
+        var Malika = Student("Malika", "Flanagan", "F", false, true);
+        var McCall = Student("McCall", "Houston", "F", false, true);
+        var Milly = Student("Milly", "Helmick", "F", false, true); 
+        var Sara = Student("Sara", "Huang", "F", false, true); 
+        var Scotty = Student("Scotty", "", "M", false, true); 
+        var Eben = Student("Eben", "", "M", false, true); 
+        
+        var list_of_students = [Allie, Joyce, Malika, McCall, Milly, Sara, Scotty, Eben];
 
         var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "faces/Eben.png"};
       
