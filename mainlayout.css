@@ -100,15 +100,8 @@ body {
 
 .delete{
 	padding-top:10px;
+	padding-left:20px;
 	height:75px;
-}
-.checkmark {
-	height:75px;
-}
-
-.delete {
-	height:55px;
-	padding-left: 20px;
 }
 
 #flashcardProgress {
@@ -141,10 +134,11 @@ body {
 	border: px solid #B6AEA1;
 }
 
-.seating-picture {
+.drag {
 	width: 45%;
 	padding: 5px;
 	margin-top: 5px;
+	z-index: 50;
 }
 
 #seating-area {

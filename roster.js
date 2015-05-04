@@ -5,87 +5,30 @@
        $("#Learned2").change(function() {
           if (this.checked){
             // Add all the Learned people to roster-view
-              FiltersOn.push(Learned)
+                bool_Learned = true;
+                console.log(Learned);
           }
             else {
-                remove(Learned)
+                bool_Learned = false; 
             }
+           
             update_view()
         });
         
         $("#ToLearn").change(function() {
           if (this.checked){
               // Add all the Learned people to roster-view
-              FiltersOn.push(ToLearn)
-              console.log(FiltersOn)
+              bool_ToLearn = true;
+//              console.log(FiltersOn)
           }
             else {
-                remove(ToLearn);
+                bool_ToLearn = false;
             }
             update_view()
                 
         });
                               
-       
-
-         $("#Undergrad").change (function() {
-          if(this.checked){
-            // Add all the Learned people to roster-view
-              FiltersOn.push(Undergrad);  
-          if(!($(Grad).Checked)){
-              FiltersOn.pop(Grad);
-            }
-          }
-            else {
-                remove(Undergrad); 
-            }
-            update_view();
-        });
-        
-        $("#Grad").change (function() {
-          if(this.checked){
-            // Add all the Learned people to roster-view
-              FiltersOn.push(Grad); 
-          }
-            else {
-                remove(Grad); 
-            }
-            update_view();
-        });
-        
-                           
-        $("#Female").change (function() {
-          if(this.checked){
-              // Add all the Learned people to roster-view
-              FiltersOn.push(Female); 
-              console.log($("#Male")[0].checked);
-
-          if(($("#Male")[0].checked)==false){
-            console.log("false dfads");
-            remove(Male);
-            }
-          }
-          else {
-                remove(Female); 
-            }
-            
-            update_view();
-                
-        });
-        
-      
-        $("#Male").change (function() {
-          if(this.checked){
-              // Add all the Learned people to roster-view
-              FiltersOn.push(Male); 
-          }
-            else {
-                remove(Male); 
-                console.log("hello");
-            }
-            update_view();
-                
-        });
+  
 
       
         function clear_view() {
@@ -95,54 +38,57 @@
             
         }
                     
-      
-       function remove(item) {
-           var i;
-           for(i = 0; i < FiltersOn.length; i++) {
-               if(FiltersOn[i] == item) {
-                  FiltersOn.splice(i,1);
 
-           }
-            
-           }
-           
-       }
+      
+     function add_to_roster(student) {
+            var currentPerson = student.fullName; 
+            console.log(currentPerson);
+            var newRow = document.getElementById("faceTable").insertRow();
+            var newPic = document.createElement('img');
+            newPic.src = student.img;
+            var newface = newRow.insertCell(0);
+            newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
+            var newName = newRow.insertCell(1);           
+            newName.innerHTML = currentPerson;
+          
+      } 
+      
             
         function update_view() {
+            clear_view();      
+            if (bool_Learned == true  && bool_ToLearn == true) { 
+                console.log("Learned and ToLearn"); 
+                for (var i = 0; i < Students.length; i++) {
+                    var student = Students[i]; 
+                    add_to_roster(student);
+                }
+            } 
             
-            clear_view();
-            if (FiltersOn.length == 0) {
+            else if (bool_Learned == true && bool_ToLearn== false) {
+                for (var i = 0; i < Students.length; i++) { 
+                    var student = Students[i];
+                    console.log(student); 
+                    console.log(Students);
+                    if (student.learned == true) {
+                        add_to_roster(student); 
+                    } 
+                }
+                
+            }else if (!bool_Learned && bool_ToLearn) {
+                for (var i = 0; i < Students.length; i++) { 
+                    var student = Students[i];
+                    if (student.learned == false ) {
+                        add_to_roster(student);
+                    } 
+                }
+            } else {
                 clear_view();
             }
-            else{
-            
-            FiltersOn = $.unique(FiltersOn.sort()).sort();
-            // Fill in the roster based on the filters that are checked
+        }
                 
-            var list_of_people = [];
-            for (i = 0; i < FiltersOn.length; i++ ) {
-                var filter = FiltersOn[i]; // 
-                
-                for (j = 0; j < filter.length; j++ ) {
-                    list_of_people.push(filter[j]) // add each person to the list_of_people
-                }
-            }
-            
-            list_of_people = $.unique(list_of_people.sort()).sort();
-            
-            /// iterate through the list and add roster lines for each person
-            for (k = 0; k < list_of_people.length; k++) { 
-                var currentPerson = list_of_people[k] 
-                var newRow = document.getElementById("faceTable").insertRow(k);
-                var newPic = document.createElement('img');
-                newPic.src = dict[currentPerson];
-                var newface = newRow.insertCell(0);
-                newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
-                var newName = newRow.insertCell(1);           
-                newName.innerHTML = currentPerson;
-            }
+  
+      
+      
+      
 
-                
-            }        
-    }
   });
