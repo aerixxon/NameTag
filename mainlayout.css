@@ -237,6 +237,8 @@ body {
 
 #endQuizButton{
 	margin-top:10px;
+	width:100px;
+	font-size:1.2em;
 
 }
 #circle {

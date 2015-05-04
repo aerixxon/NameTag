@@ -177,8 +177,8 @@
               <div role="tabpanel" class="tab-pane fade" id="quiz">
                     <div id ="sideBar">
                       <div id = "sideBarHeading"> Progress</div>
-                      <div id = "correctSoFar" class = "sideBarProgress">Correct So Far: 0</div>                       
-                      <div id = "incorrectSoFar" class = "sideBarProgress">Incorrect So Far: 0</div>
+                      <div id = "correctSoFar" class = "sideBarProgress">Correct: 0</div>                       
+                      <div id = "incorrectSoFar" class = "sideBarProgress">Incorrect: 0</div>
                       <button id = "endQuizButton" class = "btn btn-default endMyQuiz" >End Quiz</button>
                     </div>
                 <div class="panel panel-default flashcardBox">
@@ -191,7 +191,7 @@
                                <form class ="col-md-offset-3" id = "createQuizQuestions" action = "">
                                <div>1. Select a quiz type:</div>
                                 <input type = "radio" name = "quizType" id = "toLearnNew" checked= "checked"> Learn New Students <br>
-                                <div>    </div> <input type = "radio" name = "quizType" id = "toReview" padding-left="5px"> Review Learned students<br>
+                                <div>    </div> <input type = "radio" name = "quizType" id = "toReview" padding-left="5px"> Review Learned Students<br>
                                 <p> </p>
                                 <div>2. Select a number of students to learn:</div>
                                 <input type = "radio" name = "studentNumbers" id = "five" checked = "checked"> 5<br>
@@ -341,8 +341,8 @@
         });
 
         $('#SeatingChart').on('click', function() {
-            document.getElementById("ToLearn").disabled = false;
-            document.getElementById("Learned2").disabled = false;
+            document.getElementById("ToLearn").disabled = true;
+            document.getElementById("Learned2").disabled = true;
 //            document.getElementById("Undergrad").disabled = false;
 //            document.getElementById("Grad").disabled = false;
 //            document.getElementById("Male").disabled = false;
@@ -370,8 +370,9 @@
             $('.endMyQuiz').addClass('hidden');
           inQuiz = true;
 
-          document.getElementById("correctSoFar").innerHTML = ("Correct so far: " + 0);
-          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect so far: " + 0);
+          document.getElementById("correctSoFar").innerHTML = ("Correct: " + 0);
+          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect: " + 0);
+          document.getElementById("sideBarHeading").innerHTML = "Progress";
 
 
         });
@@ -382,10 +383,12 @@
             $('.createQuiz').toggleClass('hidden');
             $('.flashcardFront').addClass('hidden');
             $('flashcardBack').addClass('hidden');
+            $('.finishQuiz').addClass('hidden');
+
            inQuiz = false;
 
-          document.getElementById("correctSoFar").innerHTML = ("Correct so far: " + 0);
-          document.getElementById("incorrectSoFar").innerHTML = ("inCorrect so far: " + 0);
+          document.getElementById("correctSoFar").innerHTML = ("Correct: " + 0);
+          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect: " + 0);
             document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
         });
@@ -495,6 +498,8 @@
           counter = counter+1
         //quiz finished
           if(counter == (size1)){
+            document.getElementById("sideBarHeading").innerHTML = "Results";
+
             $('.flashcardBack').toggleClass('hidden');
             $('.finishQuiz').toggleClass('hidden');
             //document.getElementById("flashcardName").style.display = "none"
@@ -509,7 +514,7 @@
 //            document.getElementById("Grad").disabled = false;
 //            document.getElementById("Male").disabled = false;
 //            document.getElementById("Female").disabled = false;
-            document.getElementById("incorrectSoFar").innerHTML = ("Incorrect so far: " + incorrect);
+            document.getElementById("incorrectSoFar").innerHTML = ("Incorrect: " + incorrect);
           }
           else{
           if (learnedStudents==true){
@@ -522,7 +527,7 @@
           document.getElementById("flashcardName").innerHTML = thisFace.fullName;
           document.getElementById("flashcardFace").src = thisFace.img;
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
-          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect so far: " + incorrect);
+          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect: " + incorrect);
 
         }
        });
@@ -536,6 +541,7 @@
         
         //quiz finished
           if(counter == (size1)){
+            document.getElementById("sideBarHeading").innerHTML = "Results";
             $('.flashcardBack').toggleClass('hidden');
             $('.finishQuiz').toggleClass('hidden');
             //document.getElementById("flashcardName").style.display = "none"
@@ -546,7 +552,7 @@
 
             document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
-            document.getElementById("correctSoFar").innerHTML = ("Correct so far: " + correct);
+            document.getElementById("correctSoFar").innerHTML = ("Correct: " + correct);
 
 //            document.getElementById("Undergrad").disabled = false;
 //            document.getElementById("Grad").disabled = false;
@@ -569,7 +575,7 @@
           document.getElementById("flashcardName").innerHTML = thisFace.firstName + " " + thisFace.lastName;
           document.getElementById("flashcardFace").src = thisFace.img;
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
-          document.getElementById("correctSoFar").innerHTML = ("Correct so far: " + correct);
+          document.getElementById("correctSoFar").innerHTML = ("Correct: " + correct);
 
         }
        });
