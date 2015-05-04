@@ -19,8 +19,14 @@ var Student = function (First, Last, Gender, Learned, Undergrad) {
     function LearnedName() { 
         if (this.learned = false) {
             this.learned = true; 
+        }
     }
+    function UnlearnedName() { 
+        if (this.learned = true) {
+            this.learned = false; 
+        }
     }
 }
+
         
     
