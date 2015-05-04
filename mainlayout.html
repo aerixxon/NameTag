@@ -356,10 +356,10 @@
         $('#myTabs').on('click', function() {
             document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
-            document.getElementById("Undergrad").disabled = false;
-            document.getElementById("Grad").disabled = false;
-            document.getElementById("Male").disabled = false;
-            document.getElementById("Female").disabled = false;
+//            document.getElementById("Undergrad").disabled = false;
+//            document.getElementById("Grad").disabled = false;
+//            document.getElementById("Male").disabled = false;
+//            document.getElementById("Female").disabled = false;
         });
 
         $('#startNewQuizButton').on('click', function() {
@@ -393,12 +393,12 @@
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
 
           //disable filters for quiz
-          document.getElementById("Female").disabled = true;
+//          document.getElementById("Female").disabled = true;
           document.getElementById("ToLearn").disabled = true;
           document.getElementById("Learned2").disabled = true;
-          document.getElementById("Undergrad").disabled = true;
-          document.getElementById("Grad").disabled = true;
-          document.getElementById("Male").disabled = true;
+//          document.getElementById("Undergrad").disabled = true;
+//          document.getElementById("Grad").disabled = true;
+//          document.getElementById("Male").disabled = true;
             
             $('.flashcardBack').toggleClass('hidden');
             $('.flashcardFront').toggleClass('hidden');
@@ -441,12 +441,12 @@
             //document.getElementById("learned").style.display = "none";
             document.getElementById("flashcardProgress").style.display = "none";
             finished= true;
-            //document.getElementById("ToLearn").disabled = false;
+            document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
-            document.getElementById("Undergrad").disabled = false;
-            document.getElementById("Grad").disabled = false;
-            document.getElementById("Male").disabled = false;
-            document.getElementById("Female").disabled = false;
+//            document.getElementById("Undergrad").disabled = false;
+//            document.getElementById("Grad").disabled = false;
+//            document.getElementById("Male").disabled = false;
+//            document.getElementById("Female").disabled = false;
           }
        });
 
@@ -470,10 +470,10 @@
             document.getElementById("flashcardProgress").style.display = "none";
             document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
-            document.getElementById("Undergrad").disabled = false;
-            document.getElementById("Grad").disabled = false;
-            document.getElementById("Male").disabled = false;
-            document.getElementById("Female").disabled = false;
+//            document.getElementById("Undergrad").disabled = false;
+//            document.getElementById("Grad").disabled = false;
+//            document.getElementById("Male").disabled = false;
+//            document.getElementById("Female").disabled = false;
             finished= true;
             
           }
