@@ -2,7 +2,7 @@ body {
     padding-top: 65px;
     background-color: #F6F6F6;
     text-align: center;
-    color: #E7512D;
+    color: #72441E;
 }
 
 /* NAVBAR */
@@ -48,6 +48,6 @@ body {
 }
 
 .progress-bar {
-	background: #E7512D;
+	background: #72441E;
 	background-repeat: no-repeat;
 }
