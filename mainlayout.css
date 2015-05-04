@@ -100,16 +100,10 @@ body {
 
 .delete{
 	padding-top:10px;
-	height:75px;
-}
-.checkmark {
+	padding-left:20px;
 	height:75px;
 }
 
-.delete {
-	height:55px;
-	padding-left: 20px;
-}
 
 #flashcardProgress {
 	text-align:right;
