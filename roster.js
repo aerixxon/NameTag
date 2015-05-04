@@ -44,10 +44,12 @@
             var currentPerson = student.fullName; 
             console.log(currentPerson);
             var newRow = document.getElementById("faceTable").insertRow();
+
             var newPic = document.createElement('img');
             newPic.src = student.img;
             var newface = newRow.insertCell(0);
-            newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
+            newface.setAttribute('style', 'width: 40px');
+            newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60' class = 'studentName'>"; 
             var newName = newRow.insertCell(1);           
             newName.innerHTML = currentPerson;
           
