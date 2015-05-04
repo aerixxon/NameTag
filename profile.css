@@ -1,6 +1,8 @@
 body { 
     padding-top: 65px;
     background-color: #F6F6F6;
+    text-align: center;
+    color: #E7512D;
 }
 
 /* NAVBAR */
@@ -17,8 +19,35 @@ body {
     color: #E7512D;
 }
 
+.panel {
+	margin-top: 50px;
+}
 
-/* TOP ROW */
-#top-row {
-	margin: 25px;
+.panel .panel-heading {
+	text-align: left;
+    color: #fff;	
+    font-weight: bold;
+    font-size: 20px;
+    background: #E7512D;
+}
+
+.list-group-item {
+	padding: 30px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.row {
+	height: 40px;
+}
+
+#profile-name {
+	font-weight: bold;
+	font-size: 40px;
+	color: #72441E;
+}
+
+.progress-bar {
+	background: #E7512D;
+	background-repeat: no-repeat;
 }
