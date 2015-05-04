@@ -67,9 +67,9 @@ body {
 
 .flip {
 	text-align: right;
-    padding-right: 50px;
-    padding-bottom: 10px;
-    position: inherit;
+    right: 400px;
+    bottom: 36px;
+    position: absolute;
 }
 
 .hidden {
@@ -87,7 +87,7 @@ body {
 	font-family:helvetica;
 	font-style: italic;
 	text-align:center;
-	padding-top: 40px;
+	padding-top: 17px;
 	padding-bottom: 15px;
 	font-size: 1.2em;
 }
@@ -110,8 +110,8 @@ body {
     
 	text-align:right;
 	position: absolute;
-	bottom: 330px;
-	right:350px;
+	bottom: 335px;
+	right:402px;
 }
 
 /* ROSTER */
@@ -266,6 +266,8 @@ input[type=checkbox], input[type=radio] {
 
 #endQuizButton{
 	margin-top:10px;
+	width:100px;
+	font-size:1.2em;
 
 }
 #circle {
