@@ -149,14 +149,14 @@
 
               <div role="tabpanel" class="tab-pane fade" id="seating">
                 <div id="picture-bank">
-                  <img class="drag" src="faces/Allie.png">
-                  <img class="drag" src="faces/Eben.png">
-                  <img class="drag" src="faces/Joyce.png">
-                  <img class="drag" src="faces/Malika.png">
-                  <img class="drag" src="faces/McCall.png">
-                  <img class="drag" src="faces/Milly.png">
-                  <img class="drag" src="faces/Sara.jpg">
-                  <img class="drag" src="faces/Scotty.png">
+                  <img class="seating-picture drag" src="faces/Allie.png">
+                  <img class="seating-picture drag" src="faces/Eben.png">
+                  <img class="seating-picture drag" src="faces/Joyce.png">
+                  <img class="seating-picture drag" src="faces/Malika.png">
+                  <img class="seating-picture drag" src="faces/McCall.png">
+                  <img class="seating-picture drag" src="faces/Milly.png">
+                  <img class="seating-picture drag" src="faces/Sara.jpg">
+                  <img class="seating-picture drag" src="faces/Scotty.png">
                 </div>
                 <div id="seating-area">
                   <div id="half-circle-container">
@@ -193,13 +193,13 @@
                                 <input type = "radio" name = "quizType" id = "toLearnNew" checked= "checked"> Learn New Students <br>
                                 <div>    </div> <input type = "radio" name = "quizType" id = "toReview" padding-left="5px"> Review Learned Students<br>
                                 <p> </p>
-                                <div>2. Select a number of students:</div>
-                                <input type = "radio" name = "studentNumbers" id = "five" checked = "checked"> 5
-                                <input type = "radio" name = "studentNumbers" id = "ten"> 10
-                                <input type = "radio" name = "studentNumbers" id = "twenty"> 20
+                                <div>2. Select a number of students to learn:</div>
+                                <input type = "radio" name = "studentNumbers" id = "five" checked = "checked"> 5<br>
+                                <input type = "radio" name = "studentNumbers" id = "ten"> 10<br>
+                                 <input type = "radio" name = "studentNumbers" id = "twenty"> 20<br>
                               </form>
                           </div>
-                          <button id = "okButton" class = "btn btn-success col-md-offset-4">Start!</button>
+                          <button id = "okButton" class = "btn btn-success col-md-offset-8">Start Quiz</button>
                       </div>
                     </div>
                   </div>
@@ -280,7 +280,7 @@
         var Benji = new Student("Benji", "Xie", "M", true, false); 
         
 
-        var Students = [Allie, Joyce, Malika, McCall, Milly, Sara, Scotty, Eben, Colin, Derek, Emma, Hannah, Joanna, Tre, Liz, Luca, Manolya, Natalie, Nick, Priyanka, Benji]; 
+        var Students = [Allie, Benji, Colin, Derek, Eben, Emma, Hannah, Joyce, Joanna, Liz, Luca, Malika, Manolya, McCall, Milly, Natalie, Nick, Priyanka, Sara, Scotty, Tre]; 
 
         
             
@@ -302,16 +302,6 @@
         var size1 = 0
         var learnedStudents 
         var numberOfStudents
-
-        // SEATING CHART: global variables for drag and drop
-        var _startX = 0;            // mouse starting positions
-        var _startY = 0;
-        var _offsetX = 0;           // current element offset
-        var _offsetY = 0;
-        var _dragElement;           // needs to be passed from OnMouseDown to OnMouseMove
-        var _oldZIndex = 0;         // we temporarily increase the z-index during drag
-        var _debug = $('debug');    // makes life easier
-
         var list_of_learn = []
         var list_of_known = []
         var thisFace
@@ -497,7 +487,15 @@
             $('.flip').toggleClass('hidden');
           }
         });
-
+        
+        $('.progress-bar').on('click', function() {
+          if(finished == false && inQuiz == true && size1 != 0){
+            console.log("in flip");
+            $('.flashcardBack').toggleClass('hidden');
+            $('.flashcardFront').toggleClass('hidden');
+            $('.flip').toggleClass('hidden');
+          }
+        });
 
      
 
@@ -602,111 +600,6 @@
             document.getElementById("x").src = "redX.png";
              });
 
-
-        // SEATING CHART
-        InitDragDrop();
-
-        function InitDragDrop() {
-            document.onmousedown = OnMouseDown;
-            document.onmouseup = OnMouseUp;
-        }
-
-        function OnMouseDown(e){
-            // IE is retarded and doesn't pass the event object
-            if (e == null) 
-                e = window.event; 
-            
-            // IE uses srcElement, others use target
-            var target = e.target != null ? e.target : e.srcElement;
-            
-            _debug.innerHTML = target.className == 'drag' 
-                ? 'draggable element clicked' 
-                : 'NON-draggable element clicked';
-
-            // for IE, left click == 1
-            // for Firefox, left click == 0
-            if ((e.button == 1 && window.event != null || 
-                e.button == 0) && 
-                target.className == 'drag') {
-                // grab the mouse position
-                _startX = e.clientX;
-                _startY = e.clientY;
-                
-                // grab the clicked element's position
-                _offsetX = ExtractNumber(target.style.left);
-                _offsetY = ExtractNumber(target.style.top);
-                
-                // bring the clicked element to the front while it is being dragged
-                _oldZIndex = target.style.zIndex;
-                target.style.zIndex = 10000;
-                
-                // we need to access the element in OnMouseMove
-                _dragElement = target;
-
-                // tell our code to start moving the element with the mouse
-                document.onmousemove = OnMouseMove;
-                
-                // cancel out any text selections
-                document.body.focus();
-
-                // prevent text selection in IE
-                document.onselectstart = function () { return false; };
-                // prevent IE from trying to drag an image
-                target.ondragstart = function() { return false; };
-                
-                // prevent text selection (except IE)
-                return false;
-            }
-        }
-
-        function OnMouseMove(e) {
-            if (e == null) 
-                var e = window.event; 
-
-            // this is the actual "drag code"
-            _dragElement.style.left = (_offsetX + e.clientX - _startX) + 'px';
-            _dragElement.style.top = (_offsetY + e.clientY - _startY) + 'px';
-            
-            _debug.innerHTML = '(' + _dragElement.style.left + ', ' + 
-                _dragElement.style.top + ')';   
-        }
-
-        function OnMouseUp(e) {
-            if (_dragElement != null) {
-                _dragElement.style.zIndex = _oldZIndex;
-
-                //console.log(_dragElement.style.left);
-                //if (_dragElement.style.left < 100 || _dragElement.style.right > 1500) { // if mouse is off the canvas, restore original position
-                //  _dragElement.style.left = '0px';
-                //  _dragElement.style.top = '0px';
-                //}
-
-                // we're done with these events until the next OnMouseDown
-                document.onmousemove = null;
-                document.onselectstart = null;
-                _dragElement.ondragstart = null;
-
-                // this is how we know we're not dragging      
-                _dragElement = null;
-                
-                _debug.innerHTML = 'mouse up';
-            }
-        }
-
-        function ExtractNumber(value) {
-            var n = parseInt(value);
-          
-            return n == null || isNaN(n) ? 0 : n;
-        }
-
-        // The following two functions prevent unwanted default drag-drop / selection behavior
-        $(document).on("dragstart", function(e) {
-            return false;
-        });
-
-        $(document).on("selectstart", function(e) {
-            return false;
-        });
     });
 
 
