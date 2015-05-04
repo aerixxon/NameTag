@@ -12,6 +12,7 @@ body {
   text-align: center;
   background-color: #F6F6F6;
   color: #E7512D;
+  overflow: hidden;
 }
 
 /* Links */
@@ -122,7 +123,7 @@ a:hover {
   margin: 0px;
   display: inline-block;
   bottom: 0px;
-  padding-right: 15px;
+  padding-right: 1px;
 }
 
 #tagline {
