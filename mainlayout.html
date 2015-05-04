@@ -351,8 +351,8 @@
         });
 
         $('#SeatingChart').on('click', function() {
-            document.getElementById("ToLearn").disabled = false;
-            document.getElementById("Learned2").disabled = false;
+            document.getElementById("ToLearn").disabled = true;
+            document.getElementById("Learned2").disabled = true;
 //            document.getElementById("Undergrad").disabled = false;
 //            document.getElementById("Grad").disabled = false;
 //            document.getElementById("Male").disabled = false;
@@ -669,11 +669,11 @@
             if (_dragElement != null) {
                 _dragElement.style.zIndex = _oldZIndex;
 
-                //console.log(_dragElement.style.left);
-                //if (_dragElement.style.left < 100 || _dragElement.style.right > 1500) { // if mouse is off the canvas, restore original position
-                //  _dragElement.style.left = '0px';
-                //  _dragElement.style.top = '0px';
-                //}
+                console.log(e);
+                // if (InvalidDrop(e)) { // if mouse is off the canvas, restore original position
+                //   _dragElement.style.left = '0px';
+                //   _dragElement.style.top = '0px';
+                // }
 
                 // we're done with these events until the next OnMouseDown
                 document.onmousemove = null;
@@ -691,6 +691,10 @@
             var n = parseInt(value);
           
             return n == null || isNaN(n) ? 0 : n;
+        }
+
+        var InvalidDrop = function(e) {
+          return false;
         }
 
         // The following two functions prevent unwanted default drag-drop / selection behavior
