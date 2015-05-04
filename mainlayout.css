@@ -66,14 +66,14 @@ body {
 }
 
 .flip {
-	text-align:right;
-	position:absolute;
-	bottom:30px;
-	right: 250px;
+	text-align: right;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    position: inherit;
 }
 
 .hidden {
-	opacity: 
+	opacity: ;
 }
 
 #flashcardName {
@@ -94,21 +94,24 @@ body {
 
 
 .checkmark{
-	padding-top:10px;
-	height:75px;
+	padding-top: 10px;
+    height: 75px;
+    padding-left: 20px;
 }
 
 .delete{
 	padding-top:10px;
 	padding-left:20px;
 	height:75px;
+    align-content: center; 
 }
 
 #flashcardProgress {
+    
 	text-align:right;
 	position: absolute;
 	bottom: 330px;
-	right:250px;
+	right:350px;
 }
 
 /* ROSTER */
@@ -117,8 +120,18 @@ body {
 }
 
 .studentName {
-	vertical-align: middle;
+    height: 70px;
+    width: 60px;
+    align-content: center; 
+} 
+
+
+.table > tbody > tr > td {
+    vertical-align: inherit;
+    font-size: 20px; 
+    
 }
+
 
 .greyOut {
 	color:gray;
@@ -179,9 +192,9 @@ body {
 
 .quizHeading{
 	font-family:helvetica;
-	font-style: bold;
+	font-weight: bold;
 	text-align:center;
-	padding-top: 30px;
+	padding-top: 15px;
 	padding-bottom: 15px;
 	font-size: 2em;
 }
