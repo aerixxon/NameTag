@@ -117,8 +117,8 @@
           <div role="tabpanel">
             <!-- Nav tabs -->
             <ul id = "myTabs" class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a href="#roster" aria-controls="roster" role="tab" data-toggle="tab">Roster</a></li>
-              <li role="presentation"><a href="#seating" aria-controls="seating" role="tab" data-toggle="tab">Seating Chart</a></li>
+              <li id ="Roster" role="presentation" class="active"><a href="#roster" aria-controls="roster" role="tab" data-toggle="tab">Roster</a></li>
+              <li id = "SeatingChart"role="presentation"><a href="#seating" aria-controls="seating" role="tab" data-toggle="tab">Seating Chart</a></li>
               <li role="presentation"><a href="#quiz" aria-controls="quiz" role="tab" data-toggle="tab" id = "quiz_tab" >Quiz Mode</a></li>
             </ul>
 
@@ -183,7 +183,7 @@
                       <div id = "sideBarHeading"> Progress</div>
                       <div id = "correctSoFar" class = "sideBarProgress">Correct So Far: 0</div>                       
                       <div id = "incorrectSoFar" class = "sideBarProgress">Incorrect So Far: 0</div>
-                      <button id = "endQuizButton" class = "btn btn-default">End Quiz</button>
+                      <button id = "endQuizButton" class = "btn btn-default endMyQuiz" >End Quiz</button>
                     </div>
                 <div class="panel panel-default flashcardBox">
                   <!--Create a quiz-->
@@ -234,7 +234,6 @@
                         <div class="">                               
                           <div class = "quizHeading">You finished your quiz!</div>  
                             <div class = "col-md-offset-4">
-                          <button id = "restartQuizButton" class = "btn btn-success">Restart Quiz</button>
                           <button id = "startNewQuizButton" class = "btn btn-success">Start New Quiz</button>
                             </div>
                       </div>
@@ -315,7 +314,8 @@
         bool_Learned = true;
         document.getElementById("Learned2").checked = true;
         bool_ToLearn = true; 
-        
+        $('.endMyQuiz').toggleClass('hidden');
+
         
           
             // Fill in the roster based on the filters that are checked
@@ -334,7 +334,16 @@
             }
 
 
-        $('#myTabs').on('click', function() {
+        $('#Roster').on('click', function() {
+            document.getElementById("ToLearn").disabled = false;
+            document.getElementById("Learned2").disabled = false;
+//            document.getElementById("Undergrad").disabled = false;
+//            document.getElementById("Grad").disabled = false;
+//            document.getElementById("Male").disabled = false;
+//            document.getElementById("Female").disabled = false;
+        });
+
+        $('#SeatingChart').on('click', function() {
             document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
 //            document.getElementById("Undergrad").disabled = false;
@@ -344,9 +353,16 @@
         });
 
         $('#quiz_tab'). on('click', function(){
-            document.getElementById("ToLearn").disabled = true;
-            document.getElementById("Learned2").disabled = true;             
-                          
+            if(inQuiz){          
+              if(learnedStudents==true) {
+                document.getElementById("Learned2").checked = true;
+                document.getElementById("ToLearn").checked = false;}
+              else {
+                document.getElementById("ToLearn").checked = true;
+                document.getElementById("Learned2").checked = false;}
+             //disble filters in quizmode
+              document.getElementById("ToLearn").disabled = true;
+              document.getElementById("Learned2").disabled = true;}                              
         });
           
           
@@ -354,22 +370,32 @@
         $('#startNewQuizButton').on('click', function() {
             $('.createQuiz').toggleClass('hidden');
             $('.finishQuiz').toggleClass('hidden');
+            $('.endMyQuiz').addClass('hidden');
+          inQuiz = true;
 
           document.getElementById("correctSoFar").innerHTML = ("Correct so far: " + 0);
-          document.getElementById("incorrectSoFar").innerHTML = ("inCorrect so far: " + 0);
+          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect so far: " + 0);
+
+
         });
 
 
         $('#endQuizButton').on('click', function() {
+            $('.endMyQuiz').addClass('hidden');
             $('.createQuiz').toggleClass('hidden');
             $('.flashcardFront').addClass('hidden');
             $('flashcardBack').addClass('hidden');
- 
+           inQuiz = false;
+
           document.getElementById("correctSoFar").innerHTML = ("Correct so far: " + 0);
           document.getElementById("incorrectSoFar").innerHTML = ("inCorrect so far: " + 0);
+            document.getElementById("ToLearn").disabled = false;
+            document.getElementById("Learned2").disabled = false;
         });
 
         $("#okButton").on('click', function() {
+         $('.endMyQuiz').removeClass('hidden');
+
           //check radio buttons learned students
         counter = 0
         finished = false
@@ -380,9 +406,13 @@
         list_of_learn = []
         list_of_known = []
           if(document.getElementById('toReview').checked) {
-            learnedStudents= true}
+            learnedStudents= true
+            document.getElementById("Learned2").checked = true;
+           document.getElementById("ToLearn").checked = false;}
           else if(document.getElementById('toLearnNew').checked) {
-            learnedStudents = false}
+            learnedStudents = false
+            document.getElementById("ToLearn").checked = true;
+           document.getElementById("Learned2").checked = false;}
           if(document.getElementById('five').checked) {
             numberOfStudents= 5}
           else if(document.getElementById('ten').checked) {
@@ -417,14 +447,14 @@
         }
         console.log("MIN" + size1)
 
-              if (learnedStudents== true){
-                    thisFace = list_of_known[counter];
-                    }
-              else{                  
-                    thisFace = list_of_learn[counter];
-                }
+        if (learnedStudents== true){
+              thisFace = list_of_known[counter];
+              }
+        else{                  
+              thisFace = list_of_learn[counter];
+          }
 
-
+          //set first face
           $('.flashcardFront').toggleClass('hidden');
           $('.createQuiz').toggleClass('hidden');
           document.getElementById("flashcardName").innerHTML = thisFace.fullName;
@@ -455,7 +485,6 @@
             $('.flashcardBack').toggleClass('hidden');
             $('.flashcardFront').toggleClass('hidden');
             $('.flip').toggleClass('hidden');
-            $('.progress1').toggleClass('hidden');
           }
         });
 
@@ -483,7 +512,7 @@
 //            document.getElementById("Grad").disabled = false;
 //            document.getElementById("Male").disabled = false;
 //            document.getElementById("Female").disabled = false;
-
+            document.getElementById("incorrectSoFar").innerHTML = ("Incorrect so far: " + incorrect);
           }
           else{
           if (learnedStudents==true){
@@ -496,7 +525,7 @@
           document.getElementById("flashcardName").innerHTML = thisFace.fullName;
           document.getElementById("flashcardFace").src = thisFace.img;
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
-          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect so far:" + incorrect);
+          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect so far: " + incorrect);
 
         }
        });
@@ -520,6 +549,8 @@
 
             document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
+            document.getElementById("correctSoFar").innerHTML = ("Correct so far: " + correct);
+
 //            document.getElementById("Undergrad").disabled = false;
 //            document.getElementById("Grad").disabled = false;
 //            document.getElementById("Male").disabled = false;
