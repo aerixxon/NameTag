@@ -119,38 +119,13 @@
             <ul id = "myTabs" class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#roster" aria-controls="roster" role="tab" data-toggle="tab">Roster</a></li>
               <li role="presentation"><a href="#seating" aria-controls="seating" role="tab" data-toggle="tab">Seating Chart</a></li>
-              <li role="presentation"><a href="#quiz" aria-controls="quiz" role="tab" data-toggle="tab">Quiz Mode</a></li>
+              <li role="presentation"><a href="#quiz" aria-controls="quiz" role="tab" data-toggle="tab" id = "quiz_tab" >Quiz Mode</a></li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="input-group">
-                      <input type="text" data-provide = "typeahead" autocomplete="off" class="form-control" placeholder="Filter Students by...">
-<!--
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Enter</button>
-                      </span>
--->
-                    </div><!-- /input-group -->
-                  </div><!-- /.col-lg-6 -->
-                </div><!-- /.row -->
-                
-<!--
-                <script>
-                      $(function() {
-                        var availableTags = [
-                        "Allie Erixxon",
-                        "Joyce Hong", 
-                        "Sara Huang"];
-                        
-                        $(".typeahead" ).({
-                          source: availableTags
-                        });
-  });
-  </script>
--->
+               
+
                 
                 
                 
@@ -295,8 +270,22 @@
         var Sara = new Student("Sara", "Huang", "F", true, true); 
         var Scotty = new Student("Scotty", "Stephens", "M", true, false); 
         var Eben = new Student("Eben", "Bitonte", "M", true, false); 
+        var Colin = new Student("Colin", "Godwin" , "M", true, false);
+        var Derek = new Student("Derek", "Barnes", "M", false, true);
+        var Emma = new Student("Emma", "Chesley", "F", true, true);
+        var Hannah = new Student("Hannah", "Chen", "F", false, true); 
+        var Joanna = new Student("Joanna", "Chen", "F", false, true);
+        var Tre = new Student("Tre", "Albritten", "M", true, true);
+        var Liz = new Student("Elizabeth", "Cox", "F", true, true);
+        var Luca = new Student("Luca", "Cacopardo", "M", false, false);
+        var Manolya = new Student("Manolya", "Altan", "F", true, false);
+        var Natalie = new Student("Natalie", "Alper", "F", true, false); 
+        var Nick = new Student("Nick", "Diamantoni", "M", false, true);
+        var Priyanka = new Student("Priyanka", "Shome", "F", false, true); 
+        var Benji = new Student("Benji", "Xie", "M", true, false); 
+        
 
-        var Students = [Allie, Joyce, Malika, McCall, Milly, Sara, Scotty, Eben]; 
+        var Students = [Allie, Joyce, Malika, McCall, Milly, Sara, Scotty, Eben, Colin, Derek, Emma, Hannah, Joanna, Tre, Liz, Luca, Manolya, Natalie, Nick, Priyanka, Benji]; 
 
         
             
@@ -354,6 +343,13 @@
 //            document.getElementById("Female").disabled = false;
         });
 
+        $('#quiz_tab'). on('click', function(){
+            document.getElementById("ToLearn").disabled = true;
+            document.getElementById("Learned2").disabled = true;             
+                          
+        });
+          
+          
 
         $('#startNewQuizButton').on('click', function() {
             $('.createQuiz').toggleClass('hidden');
