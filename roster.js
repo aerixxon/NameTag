@@ -32,6 +32,9 @@
           if(this.checked){
             // Add all the Learned people to roster-view
               FiltersOn.push(Undergrad);  
+          if(!($(Grad).Checked)){
+              FiltersOn.pop(Grad);
+            }
           }
             else {
                 remove(Undergrad); 
@@ -55,8 +58,14 @@
           if(this.checked){
               // Add all the Learned people to roster-view
               FiltersOn.push(Female); 
+              console.log($("#Male")[0].checked);
+
+          if(($("#Male")[0].checked)==false){
+            console.log("false dfads");
+            remove(Male);
+            }
           }
-            else {
+          else {
                 remove(Female); 
             }
             
@@ -131,7 +140,6 @@
                 newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
                 var newName = newRow.insertCell(1);           
                 newName.innerHTML = currentPerson;
-
             }
 
                 
