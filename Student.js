@@ -14,7 +14,7 @@ function Student(First, Last, Gender, Learned, Undergrad) {
     this.undergrad = Undergrad; 
     this.img = dict[First];  
     
-    function learnedName() { 
+    function LearnedName() { 
         if (this.learned = false) {
             this.learned = true; 
         }

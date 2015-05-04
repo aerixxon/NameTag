@@ -328,9 +328,6 @@
         
         
           
-        FiltersOn.push(Learned);
-        FiltersOn.push(ToLearn);
-            FiltersOn = $.unique(FiltersOn.sort()).sort();
             // Fill in the roster based on the filters that are checked
                 
             var list_of_people = [];
@@ -365,6 +362,7 @@
         });
 
         $("#okButton").on('click', function() {
+          console.log("asfdasfdsa");
           //check radio buttons learned students
           if(document.getElementById('toReview').checked) {
             learnedStudents= true}
@@ -380,34 +378,36 @@
           inQuiz = true;
           
           //filter for learnedStudents or KnownStudents
-        list_of_learned = []
+        list_of_learn = []
         list_of_known = []
-        for (i in list_of_people){
-          if (i.learned == true){
-            list_of_learn.push(i)
-            size1 = Math.min(list_of_learned.length,numberOfStudents)
+        console.log(Students);
+        for (i in Students){
+          student = Students[i];
+          console.log(Students[i]);
+          if (student.learned == true){
+            list_of_learn.push(student);
+            size1 = Math.min(list_of_learn.length,numberOfStudents);
           }
           else{
-            list_of_known.push(i)
-            size1 = Math.min(list_of_known.length, numberOfStudents)
+            list_of_known.push(student);
+            size1 = Math.min(list_of_known.length, numberOfStudents);
           }
         }
+        console.log(list_of_learn);
+        console.log(list_of_known);
 
-          if (size1 !=0) {
               if (learnedStudents== true){
-                    var thisFace = list_of_learn[counter].img;
+                    var thisFace = list_of_learn[counter];
                     }
               else{                  
-                if (list_of_people[counter].learned ==false){
-                    var thisFace = list_of_known[counter].img;
-              }
-              }
+                    var thisFace = list_of_known[counter];
+                }
 
 
           $('.flashcardFront').toggleClass('hidden');
           $('.createQuiz').toggleClass('hidden');
-          document.getElementById("flashcardName").innerHTML = thisFace;
-          document.getElementById("flashcardFace").src = dict[thisFace];
+          document.getElementById("flashcardName").innerHTML = thisFace.fullName;
+          document.getElementById("flashcardFace").src = thisFace.img;
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
 
 
@@ -423,7 +423,7 @@
             $('.flashcardFront').toggleClass('hidden');
             $('.progress1').toggleClass('hidden');
 
-        }
+        
 
         });
 
@@ -447,16 +447,16 @@
           counter = counter+1
           incorrect = incorrect + 1
           if (learnedStudents){
-            var thisFace = list_of_known[counter].img;
+            var thisFace = list_of_known[counter];
           }
           else{
              var thisFace = list_of_learn[counter];
           }
-          thisFace.UnlearnedName();
-          document.getElementById("flashcardName").innerHTML = thisFace.firstName + " " + thisFace.lastName;
+          thisFace.learned = false;
+          document.getElementById("flashcardName").innerHTML = thisFace.fullName;
           document.getElementById("flashcardFace").src = thisFace.img;
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
-          document.getElementbyId("incorrectSoFar").innerHTML = ("Incorrect so far" + incorrect)
+          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect so far" + incorrect);
         //quiz finished
           if(counter == size1){
             $('.flashcardBack').toggleClass('hidden');
@@ -488,11 +488,11 @@
           else{
              var thisFace = list_of_learn[counter];
           }
-          thisFace.LearnedName();
+          thisFace.learned = true;
           document.getElementById("flashcardName").innerHTML = thisFace.firstName + " " + thisFace.lastName;
           document.getElementById("flashcardFace").src = thisFace.img;
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
-          document.getElementbyId("incorrectSoFar").innerHTML = ("Incorrect so far" + correct)
+          document.getElementById("incorrectSoFar").innerHTML = ("Incorrect so far" + correct);
 
         //quiz finished
           if(counter == size1){
