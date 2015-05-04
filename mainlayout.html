@@ -46,7 +46,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rob Miller <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="profile.html">Progress</a></li>
+                <li><a href="profile.html">Profile</a></li>
                 <li class="divider"></li>
                 <li><a href="login.html">Sign out</a></li>
               </ul>
@@ -206,8 +206,8 @@
               <div role="tabpanel" class="tab-pane fade" id="quiz">
                     <div id ="sideBar">
                       <div id = "sideBarHeading"> Progress</div>
-                      <div id = "correctSoFar" class = "sideBarProgress">Correct So Far: 0</div>                       
-                      <div id = "incorrectSoFar" class = "sideBarProgress">Incorrect So Far: 0</div>
+                      <div class = "sideBarProgress">Correct So Far: 0</div>                       
+                      <div class = "sideBarProgress">Incorrect So Far: 0</div>
                       <button id = "endQuizButton" class = "btn btn-default">End Quiz</button>
                     </div>
                 <div class="panel panel-default flashcardBox">
@@ -223,9 +223,9 @@
                                 <div>    </div> <input type = "radio" name = "quizType" id = "toReview" padding-left="5px"> Review Learned students<br>
                                 <p> </p>
                                 <div>2. Select a number of students to learn:</div>
-                                <input type = "radio" name = "studentNumbers" id = "five" checked = "checked"> 5<br>
-                                <input type = "radio" name = "studentNumbers" id = "ten"> 10<br>
-                                 <input type = "radio" name = "studentNumbers" id = "twenty"> 20<br>
+                                <input type = "radio" name = "studentNumbers" id = "ten" checked = "checked"> 10<br>
+                                <input type = "radio" name = "studentNumbers" id = "twenty"> 20<br>
+                                 <input type = "radio" name = "studentNumbers" id = "thirty"> 30<br>
                               </form>
                           </div>
                           <button id = "okButton" class = "btn btn-success col-md-offset-8">Start Quiz</button>
@@ -278,6 +278,9 @@
 
     <script>
 
+//        var ALL  = ["Allie", "Joyce", "Malika", "McCall", "Milly", "Sara", "Scotty", "Eben"]
+//        var Female = [ "Allie", "Joyce", "Malika", "McCall", "Milly", "Sara"]; 
+//        var Male = ["Scotty", "Eben"]; 
         var Learned = ["Allie", "Joyce", "Malika", "McCall"]
         var ToLearn = ["Milly", "Sara", "Scotty", "Eben"]; 
         var FiltersOn = [];   
@@ -293,8 +296,8 @@
         var McCall = new Student("McCall", "Houston", "F", false, true);
         var Milly = new Student("Milly", "Helmick", "F", false, true); 
         var Sara = new Student("Sara", "Huang", "F", true, true); 
-        var Scotty = new Student("Scotty", "Stephens", "M", true, false); 
-        var Eben = new Student("Eben", "Bitonte", "M", true, false); 
+        var Scotty = new Student("Scotty", "", "M", true, false); 
+        var Eben = new Student("Eben", "", "M", true, false); 
 
         var Students = [Allie, Joyce, Malika, McCall, Milly, Sara, Scotty, Eben]; 
 
@@ -313,49 +316,51 @@
         var counter = 0
         var finished = false
         var correct = 0
-        var incorrect = 0
         inQuiz = false
         var size1 = 0
         var learnedStudents 
         var numberOfStudents
-        var list_of_learn = []
-        var list_of_known = []
+
 
         document.getElementById("ToLearn").checked = true;
-        bool_Learned = true;
         document.getElementById("Learned2").checked = true;
-        bool_ToLearn = true; 
-        
-        
-          
+
         FiltersOn.push(Learned);
         FiltersOn.push(ToLearn);
             FiltersOn = $.unique(FiltersOn.sort()).sort();
             // Fill in the roster based on the filters that are checked
                 
             var list_of_people = [];
-            for (i = 0; i < Students.length; i++ ) {
-                var student = Students[i]; // 
-                var currentPerson = student.fullName
-                var newRow = document.getElementById("faceTable").insertRow();
+            for (i = 0; i < FiltersOn.length; i++ ) {
+                var filter = FiltersOn[i]; // 
+                
+                for (j = 0; j < filter.length; j++ ) {
+                    list_of_people.push(filter[j]) // add each person to the list_of_people
+                }
+            }
+            
+            list_of_people = $.unique(list_of_people.sort()).sort();
+            
+            /// iterate through the list and add roster lines for each person
+            for (k = 0; k < list_of_people.length; k++) { 
+                var currentPerson = list_of_people[k] 
+                var newRow = document.getElementById("faceTable").insertRow(k);
                 var newPic = document.createElement('img');
-                newPic.src = student.img;
+                newPic.src = dict[currentPerson];
                 var newface = newRow.insertCell(0);
                 newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
                 var newName = newRow.insertCell(1);           
                 newName.innerHTML = currentPerson;
             }
 
-
         $('#myTabs').on('click', function() {
             document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
-//            document.getElementById("Undergrad").disabled = false;
-//            document.getElementById("Grad").disabled = false;
-//            document.getElementById("Male").disabled = false;
-//            document.getElementById("Female").disabled = false;
+            document.getElementById("Undergrad").disabled = false;
+            document.getElementById("Grad").disabled = false;
+            document.getElementById("Male").disabled = false;
+            document.getElementById("Female").disabled = false;
         });
-
 
         $('#startNewQuizButton').on('click', function() {
             $('.createQuiz').toggleClass('hidden');
@@ -370,54 +375,30 @@
             learnedStudents= true}
           else if(document.getElementById('toLearnNew').checked) {
             learnedStudents = false}
-          if(document.getElementById('five').checked) {
-            numberOfStudents= 5}
-          else if(document.getElementById('ten').checked) {
-            numberOfStudents= 10}           
+          if(document.getElementById('ten').checked) {
+            numberOfStudents= 10}
           else if(document.getElementById('twenty').checked) {
-            numberOfStudents= 20} 
+            numberOfStudents= 20}           
+          else if(document.getElementById('thirty').checked) {
+            numberOfStudents= 30} 
 
           inQuiz = true;
-          
-          //filter for learnedStudents or KnownStudents
-        list_of_learned = []
-        list_of_known = []
-        for (i in list_of_people){
-          if (i.learned == true){
-            list_of_learn.push(i)
-            size1 = Math.min(list_of_learned.length,numberOfStudents)
-          }
-          else{
-            list_of_known.push(i)
-            size1 = Math.min(list_of_known.length, numberOfStudents)
-          }
-        }
-
+          size1 = list_of_people.length
           if (size1 !=0) {
-              if (learnedStudents== true){
-                    var thisFace = list_of_learn[counter].img;
-                    }
-              else{                  
-                if (list_of_people[counter].learned ==false){
-                    var thisFace = list_of_known[counter].img;
-              }
-              }
-
-
+          var thisFace = list_of_people[counter];
           $('.flashcardFront').toggleClass('hidden');
           $('.createQuiz').toggleClass('hidden');
           document.getElementById("flashcardName").innerHTML = thisFace;
           document.getElementById("flashcardFace").src = dict[thisFace];
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
 
-
           //disable filters for quiz
-//          document.getElementById("Female").disabled = true;
+          document.getElementById("Female").disabled = true;
           document.getElementById("ToLearn").disabled = true;
           document.getElementById("Learned2").disabled = true;
-//          document.getElementById("Undergrad").disabled = true;
-//          document.getElementById("Grad").disabled = true;
-//          document.getElementById("Male").disabled = true;
+          document.getElementById("Undergrad").disabled = true;
+          document.getElementById("Grad").disabled = true;
+          document.getElementById("Male").disabled = true;
             
             $('.flashcardBack').toggleClass('hidden');
             $('.flashcardFront').toggleClass('hidden');
@@ -445,18 +426,11 @@
         $('.delete').on('click', function() {
           console.log("delete");
           counter = counter+1
-          incorrect = incorrect + 1
-          if (learnedStudents){
-            var thisFace = list_of_known[counter].img;
-          }
-          else{
-             var thisFace = list_of_learn[counter];
-          }
-          thisFace.UnlearnedName();
-          document.getElementById("flashcardName").innerHTML = thisFace.firstName + " " + thisFace.lastName;
-          document.getElementById("flashcardFace").src = thisFace.img;
+          var thisFace = list_of_people[counter];
+          document.getElementById("flashcardName").innerHTML = thisFace;
+          document.getElementById("flashcardFace").src = dict[thisFace];
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
-          document.getElementbyId("incorrectSoFar").innerHTML = ("Incorrect so far" + incorrect)
+
         //quiz finished
           if(counter == size1){
             $('.flashcardBack').toggleClass('hidden');
@@ -467,13 +441,12 @@
             //document.getElementById("learned").style.display = "none";
             document.getElementById("flashcardProgress").style.display = "none";
             finished= true;
-            document.getElementById("ToLearn").disabled = false;
+            //document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
-//            document.getElementById("Undergrad").disabled = false;
-//            document.getElementById("Grad").disabled = false;
-//            document.getElementById("Male").disabled = false;
-//            document.getElementById("Female").disabled = false;
-
+            document.getElementById("Undergrad").disabled = false;
+            document.getElementById("Grad").disabled = false;
+            document.getElementById("Male").disabled = false;
+            document.getElementById("Female").disabled = false;
           }
        });
 
@@ -482,19 +455,11 @@
         $('.checkmark').on('click', function() {
           counter = counter + 1
           correct = correct + 1
-          if (learnedStudents){
-            var thisFace = list_of_known[counter];
-          }
-          else{
-             var thisFace = list_of_learn[counter];
-          }
-          thisFace.LearnedName();
-          document.getElementById("flashcardName").innerHTML = thisFace.firstName + " " + thisFace.lastName;
-          document.getElementById("flashcardFace").src = thisFace.img;
+          var thisFace = list_of_people[counter];
+          document.getElementById("flashcardName").innerHTML = thisFace;
+          document.getElementById("flashcardFace").src = dict[thisFace];
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
-          document.getElementbyId("incorrectSoFar").innerHTML = ("Incorrect so far" + correct)
 
-        //quiz finished
           if(counter == size1){
             $('.flashcardBack').toggleClass('hidden');
             $('.finishQuiz').toggleClass('hidden');
@@ -503,28 +468,30 @@
             //document.getElementById("x").style.display = "none";
             //document.getElementById("learned").style.display = "none";
             document.getElementById("flashcardProgress").style.display = "none";
-
             document.getElementById("ToLearn").disabled = false;
             document.getElementById("Learned2").disabled = false;
-//            document.getElementById("Undergrad").disabled = false;
-//            document.getElementById("Grad").disabled = false;
-//            document.getElementById("Male").disabled = false;
-//            document.getElementById("Female").disabled = false;
+            document.getElementById("Undergrad").disabled = false;
+            document.getElementById("Grad").disabled = false;
+            document.getElementById("Male").disabled = false;
+            document.getElementById("Female").disabled = false;
             finished= true;
+            
           }
        });
 
+
         $('.checkmark').hover( function() {
-           document.getElementById("check").src = "greenCheckDark.png";},
-            function(){
-            document.getElementById("check").src = "greenCheck.png";
+//            document.getElementById("check").src = "greenCheckDark.png";},
+ //           function(){
+//            document.getElementById("check").src = "greenCheck.png";
              });
 
         $('.delete').hover( function() {
-            document.getElementById("x").src = "RedXDark.png";},
-            function(){
-            document.getElementById("x").src = "redX.png";
+//            document.getElementById("x").src = "RedXDark.png";},
+          //  function(){
+//            document.getElementById("x").src = "redX.png";
              });
+
 
     });
 
