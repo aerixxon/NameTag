@@ -42,6 +42,7 @@
       
      function add_to_roster(student) {
             var currentPerson = student.fullName; 
+            console.log(currentPerson);
             var newRow = document.getElementById("faceTable").insertRow();
             var newPic = document.createElement('img');
             newPic.src = student.img;

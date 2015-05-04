@@ -278,9 +278,6 @@
 
     <script>
 
-//        var ALL  = ["Allie", "Joyce", "Malika", "McCall", "Milly", "Sara", "Scotty", "Eben"]
-//        var Female = [ "Allie", "Joyce", "Malika", "McCall", "Milly", "Sara"]; 
-//        var Male = ["Scotty", "Eben"]; 
         var Learned = ["Allie", "Joyce", "Malika", "McCall"]
         var ToLearn = ["Milly", "Sara", "Scotty", "Eben"]; 
         var FiltersOn = [];   
@@ -296,8 +293,8 @@
         var McCall = new Student("McCall", "Houston", "F", false, true);
         var Milly = new Student("Milly", "Helmick", "F", false, true); 
         var Sara = new Student("Sara", "Huang", "F", true, true); 
-        var Scotty = new Student("Scotty", "", "M", true, false); 
-        var Eben = new Student("Eben", "", "M", true, false); 
+        var Scotty = new Student("Scotty", "Stephens", "M", true, false); 
+        var Eben = new Student("Eben", "Bitonte", "M", true, false); 
 
         var Students = [Allie, Joyce, Malika, McCall, Milly, Sara, Scotty, Eben]; 
 
@@ -325,30 +322,24 @@
         var list_of_known = []
 
         document.getElementById("ToLearn").checked = true;
+        bool_Learned = true;
         document.getElementById("Learned2").checked = true;
-
+        bool_ToLearn = true; 
+        
+        
+          
         FiltersOn.push(Learned);
         FiltersOn.push(ToLearn);
             FiltersOn = $.unique(FiltersOn.sort()).sort();
             // Fill in the roster based on the filters that are checked
                 
             var list_of_people = [];
-            for (i = 0; i < FiltersOn.length; i++ ) {
-                var filter = FiltersOn[i]; // 
-                
-                for (j = 0; j < filter.length; j++ ) {
-                    list_of_people.push(filter[j]) // add each person to the list_of_people
-                }
-            }
-            
-            list_of_people = $.unique(list_of_people.sort()).sort();
-            
-            /// iterate through the list and add roster lines for each person
-            for (k = 0; k < list_of_people.length; k++) { 
-                var currentPerson = list_of_people[k] 
-                var newRow = document.getElementById("faceTable").insertRow(k);
+            for (i = 0; i < Students.length; i++ ) {
+                var student = Students[i]; // 
+                var currentPerson = student.fullName
+                var newRow = document.getElementById("faceTable").insertRow();
                 var newPic = document.createElement('img');
-                newPic.src = dict[currentPerson];
+                newPic.src = student.img;
                 var newface = newRow.insertCell(0);
                 newface.innerHTML = "<img src=" + newPic.src + " alt=" + currentPerson + "height='70' width='60'>"; 
                 var newName = newRow.insertCell(1);           
