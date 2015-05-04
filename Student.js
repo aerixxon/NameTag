@@ -19,9 +19,15 @@ function Student(First, Last, Gender, Learned, Undergrad) {
             this.learned = true; 
         }
     }
-    
-  
+
+    function UnlearnedName() { 
+        if (this.learned = true) {
+            this.learned = false; 
+        }
+    }
+
     };
+
 
         
 
