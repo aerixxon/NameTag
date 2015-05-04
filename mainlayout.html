@@ -20,8 +20,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="roster.js"></script>
-    <script type="text/javascript" src="Student.js"></script>
+     <script type="text/javascript" src="Student.js"></script>
+      <script type="text/javascript" src="roster.js"></script>
+   
       
     <link rel="stylesheet" href="./mainlayout.css">
   </head>
@@ -80,6 +81,7 @@
                   </label>
                 </div>
               </li>
+<!--
               <li class="list-group-item">
                 <div class="checkbox">
                   <label>
@@ -92,6 +94,8 @@
                   </label>
                 </div>
               </li>
+-->
+<!--
               <li class="list-group-item">
                 <div class="checkbox">
                   <label>
@@ -104,6 +108,7 @@
                   </label>
                 </div>
               </li>     
+-->
             </ul>
           </div>
         </div> <!-- filters panel -->
@@ -119,6 +124,36 @@
 
             <!-- Tab panes -->
             <div class="tab-content">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="input-group">
+                      <input type="text" data-provide = "typeahead" autocomplete="off" class="form-control" placeholder="Filter Students by...">
+<!--
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Enter</button>
+                      </span>
+-->
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                
+<!--
+                <script>
+                      $(function() {
+                        var availableTags = [
+                        "Allie Erixxon",
+                        "Joyce Hong", 
+                        "Sara Huang"];
+                        
+                        $(".typeahead" ).({
+                          source: availableTags
+                        });
+  });
+  </script>
+-->
+                
+                
+                
                 
                 
                 <!--Roster View-->
@@ -243,27 +278,36 @@
 
     <script>
 
-        var ALL  = ["Allie", "Joyce", "Malika", "McCall", "Milly", "Sara", "Scotty", "Eben"]
-        var Female = [ "Allie", "Joyce", "Malika", "McCall", "Milly", "Sara"]; 
-        var Male = ["Scotty", "Eben"]; 
+//        var ALL  = ["Allie", "Joyce", "Malika", "McCall", "Milly", "Sara", "Scotty", "Eben"]
+//        var Female = [ "Allie", "Joyce", "Malika", "McCall", "Milly", "Sara"]; 
+//        var Male = ["Scotty", "Eben"]; 
         var Learned = ["Allie", "Joyce", "Malika", "McCall"]
         var ToLearn = ["Milly", "Sara", "Scotty", "Eben"]; 
         var FiltersOn = [];   
         var list_of_people = [];
         
-        // Database of Students 
-        var Allie = Student("Allie", "Erixxon", "F", false, true);
-        var Joyce = Student("Joyce", "Hong", "F", false, true);
-        var Malika = Student("Malika", "Flanagan", "F", false, true);
-        var McCall = Student("McCall", "Houston", "F", false, true);
-        var Milly = Student("Milly", "Helmick", "F", false, true); 
-        var Sara = Student("Sara", "Huang", "F", false, true); 
-        var Scotty = Student("Scotty", "", "M", false, true); 
-        var Eben = Student("Eben", "", "M", false, true); 
         
-        var list_of_students = [Allie, Joyce, Malika, McCall, Milly, Sara, Scotty, Eben];
+        var bool_Learned;
+        var bool_ToLearn;
+        
+        var Allie = new Student("Allie", "Erixxon", "F", false, true);
+        var Joyce = new Student("Joyce", "Hong", "F", false, true);
+        var Malika = new Student("Malika", "Flanagan", "F", false, true);
+        var McCall = new Student("McCall", "Houston", "F", false, true);
+        var Milly = new Student("Milly", "Helmick", "F", false, true); 
+        var Sara = new Student("Sara", "Huang", "F", true, true); 
+        var Scotty = new Student("Scotty", "", "M", true, false); 
+        var Eben = new Student("Eben", "", "M", true, false); 
 
-        var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "faces/Eben.png"};
+        var Students = [Allie, Joyce, Malika, McCall, Milly, Sara, Scotty, Eben]; 
+
+        
+            
+        
+        // Database of Students 
+        
+
+//        var dict = {"Allie": "faces/Allie.png", "Joyce": "faces/Joyce.png", "Malika":"faces/Malika.png", "McCall":"faces/McCall.png", "Milly":"faces/Milly.png", "Sara":"faces/Sara.jpg", "Scotty": "faces/Scotty.png", "Eben": "faces/Eben.png"};
 
       
       $(document).ready(function() {
@@ -282,6 +326,7 @@
 
         document.getElementById("ToLearn").checked = true;
         document.getElementById("Learned2").checked = true;
+
         FiltersOn.push(Learned);
         FiltersOn.push(ToLearn);
             FiltersOn = $.unique(FiltersOn.sort()).sort();
@@ -309,6 +354,16 @@
                 var newName = newRow.insertCell(1);           
                 newName.innerHTML = currentPerson;
             }
+
+
+        $('#myTabs').on('click', function() {
+            document.getElementById("ToLearn").disabled = false;
+            document.getElementById("Learned2").disabled = false;
+//            document.getElementById("Undergrad").disabled = false;
+//            document.getElementById("Grad").disabled = false;
+//            document.getElementById("Male").disabled = false;
+//            document.getElementById("Female").disabled = false;
+        });
 
 
         $('#startNewQuizButton').on('click', function() {
@@ -363,7 +418,16 @@
           document.getElementById("flashcardName").innerHTML = thisFace;
           document.getElementById("flashcardFace").src = dict[thisFace];
           document.getElementById("flashcardProgress").innerHTML = (counter+1)+ " of " +size1;
-          
+
+
+          //disable filters for quiz
+//          document.getElementById("Female").disabled = true;
+          document.getElementById("ToLearn").disabled = true;
+          document.getElementById("Learned2").disabled = true;
+//          document.getElementById("Undergrad").disabled = true;
+//          document.getElementById("Grad").disabled = true;
+//          document.getElementById("Male").disabled = true;
+            
             $('.flashcardBack').toggleClass('hidden');
             $('.flashcardFront').toggleClass('hidden');
             $('.progress1').toggleClass('hidden');
@@ -412,6 +476,13 @@
             //document.getElementById("learned").style.display = "none";
             document.getElementById("flashcardProgress").style.display = "none";
             finished= true;
+            document.getElementById("ToLearn").disabled = false;
+            document.getElementById("Learned2").disabled = false;
+//            document.getElementById("Undergrad").disabled = false;
+//            document.getElementById("Grad").disabled = false;
+//            document.getElementById("Male").disabled = false;
+//            document.getElementById("Female").disabled = false;
+
           }
        });
 
@@ -441,20 +512,27 @@
             //document.getElementById("x").style.display = "none";
             //document.getElementById("learned").style.display = "none";
             document.getElementById("flashcardProgress").style.display = "none";
+
+            document.getElementById("ToLearn").disabled = false;
+            document.getElementById("Learned2").disabled = false;
+//            document.getElementById("Undergrad").disabled = false;
+//            document.getElementById("Grad").disabled = false;
+//            document.getElementById("Male").disabled = false;
+//            document.getElementById("Female").disabled = false;
             finished= true;
           }
        });
 
         $('.checkmark').hover( function() {
-            document.getElementById("check").src = "greenCheckDark.png";},
-            function(){
-            document.getElementById("check").src = "greenCheck.png";
+//            document.getElementById("check").src = "greenCheckDark.png";},
+ //           function(){
+//            document.getElementById("check").src = "greenCheck.png";
              });
 
         $('.delete').hover( function() {
-            document.getElementById("x").src = "RedXDark.png";},
-            function(){
-            document.getElementById("x").src = "redX.png";
+//            document.getElementById("x").src = "RedXDark.png";},
+          //  function(){
+//            document.getElementById("x").src = "redX.png";
              });
 
     });
