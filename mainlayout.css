@@ -206,7 +206,10 @@ body {
 }
 
 #startNewQuizButton{
-	margin:15px;
+	margin:17px;
+	height:52px;
+	width:176px;
+	font-size: 1.5em;
 }
 
 #restartQuizButton{
